@@ -150,6 +150,24 @@ public class GameplayMgr : Singleton<GameplayMgr>
         GoToLevel(level);
     }
 
+#if UNITY_EDITOR
+    [Button]
+    public void GoNextLevel()
+    {
+        currentLevel++;
+        stateMachine.StateChange(stateGameplayEnd);
+        stateMachine.StateChange(stateGameplayInit);
+    }
+
+    [Button]
+    public void GoPreviousLevel()
+    {
+        currentLevel--;
+        stateMachine.StateChange(stateGameplayEnd);
+        stateMachine.StateChange(stateGameplayInit);
+    }
+#endif
+
     public void TriggerCompleteLevelEffect()
     {
         float effectYPos = ringStackList[0].transform.position.y +
