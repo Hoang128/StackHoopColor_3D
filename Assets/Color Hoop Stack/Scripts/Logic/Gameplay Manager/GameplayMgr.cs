@@ -139,6 +139,41 @@ public class GameplayMgr : Singleton<GameplayMgr>
         stateMachine.StateChange(stateGameplayInit);
     }
 
+    public void GoToLevel(int level, float goAfterSeconds)
+    {
+        StartCoroutine(GoToLevelAfter(level, goAfterSeconds));
+    }
+
+    private IEnumerator GoToLevelAfter(int level, float goAfterSeconds)
+    {
+        yield return new WaitForSeconds(goAfterSeconds);
+        GoToLevel(level);
+    }
+
+    public void TriggerCompleteLevelEffect()
+    {
+        float effectYPos = ringStackList[0].transform.position.y +
+            ringStackList[0].boxCol.size.y / 2 +
+            0.15f;
+        foreach (RingStack ringStack in ringStackList)
+        {
+            GameObject particleGO = PoolerMgr.Instance.VFXCompletePooler.GetNextPS();
+            particleGO.transform.position = new Vector3(ringStack.transform.position.x, effectYPos, ringStack.transform.position.z);
+        }
+        SoundsMgr.Instance.PlaySFX(SoundsMgr.Instance.sfxListConfig.sfxConfigDic[SFXType.FULL_ALL], false);
+    }
+
+    public void TriggerCompleteLevelEffect(float afterSeconds)
+    {
+        StartCoroutine(TriggerCompleteLevelEffectAfter(afterSeconds));
+    }
+
+    private IEnumerator TriggerCompleteLevelEffectAfter(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        TriggerCompleteLevelEffect();
+    }
+
     public void GetRingTypeNumber(int level)
     {
         LevelConfig levelConfig = levelListConfig.levelList[level];

@@ -14,11 +14,11 @@ public class MusicButton : MonoBehaviour
     {
         if (GameManager.Instance.SoundEnable)
         {
-            cross.active = false;
+            cross.SetActive(false);
         }
         else
         {
-            cross.active = true;
+            cross.SetActive(true);
         }
     }
     public void OnClickButton()

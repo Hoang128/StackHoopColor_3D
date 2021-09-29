@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class GameCamera : MonoBehaviour
 {
-    Camera cam;
+    public Camera cam;
 
     private void Awake()
     {
-        cam = GetComponent<Camera>();
-
         EventDispatcher.Instance.RegisterListener(EventID.ON_RING_STACK_NUMBER_CHANGE, param => OnRingStackNumberChange());
     }
 

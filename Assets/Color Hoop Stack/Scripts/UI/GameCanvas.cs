@@ -8,6 +8,9 @@ public class GameCanvas : MonoBehaviour
     public RestartButton restartButton;
     public MoreStackButton moreStackButton;
     public UndoButton undoButton;
+    public float winPanelTime = 2.5f;
+
+    private Coroutine enableWinMenu = null;
 
     // Start is called before the first frame update
     void Awake()
@@ -18,6 +21,8 @@ public class GameCanvas : MonoBehaviour
 
     public void InitLevelUI()
     {
+        if (enableWinMenu != null)
+            StopCoroutine(enableWinMenu);
         winMenu.gameObject.SetActive(false);    
         restartButton.gameObject.SetActive(true);
         moreStackButton.gameObject.SetActive(true);
@@ -26,9 +31,15 @@ public class GameCanvas : MonoBehaviour
 
     public void CompleteLevelUI()
     {
-        winMenu.gameObject.SetActive(true);
+        enableWinMenu = StartCoroutine(EnableWinMenuAfter(winPanelTime));
         restartButton.gameObject.SetActive(false);
         moreStackButton.gameObject.SetActive(false);
         undoButton.gameObject.SetActive(false);
+    }
+
+    private IEnumerator EnableWinMenuAfter(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        winMenu.gameObject.SetActive(true);
     }
 }

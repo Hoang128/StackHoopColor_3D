@@ -8,12 +8,13 @@ public class WinMenu : MonoBehaviour
     public GameObject backgroundPanel;
     public ParticleSystem lFirework;
     public ParticleSystem rFirework;
+    public float fireworkTime = 2f;
 
     private void OnEnable()
     {
         StartCoroutine(PlayFireWorkAfter(lFirework, 0f));
         StartCoroutine(PlayFireWorkAfter(rFirework, 0f));
-        StartCoroutine(ResetFireWorkAfter(rFirework, 2f));
+        StartCoroutine(ResetFireWorkAfter(rFirework, fireworkTime));
         animator.Play("Win Menu Start Anim");
         backgroundPanel.gameObject.SetActive(true);
         SoundsMgr.Instance.PlaySFX(SoundsMgr.Instance.sfxListConfig.sfxConfigDic[SFXType.WIN], false);

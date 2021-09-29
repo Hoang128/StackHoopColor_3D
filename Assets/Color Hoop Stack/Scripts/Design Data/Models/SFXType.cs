@@ -11,5 +11,6 @@ public enum SFXType
     RING_DOWN,
     FULL_STACK,
     BUTTON,
-    CHEER
+    CHEER,
+    FULL_ALL
 }

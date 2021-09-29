@@ -15,8 +15,8 @@ public class StateGameplayCompleteLevel : StateGameplay
         base.OnEnter();
 
         Utils.Common.Log("win game!");
-
         EventDispatcher.Instance.PostEvent(EventID.ON_COMPLETE_LEVEL);
+        gameplayMgr.TriggerCompleteLevelEffect(1f);
     }
 
     public override void OnHandleInput()
