@@ -72,6 +72,13 @@ public class StateGameplayRingMove : StateGameplay
                 nextRing = null;
             }
         }
+        else
+        {
+            if (ringStackEnd.ringStack.Count >= 4)
+            {
+                nextRing = null;
+            }
+        }
 
         if (ringMove.transform.position.y != newRingYPos)
         {
@@ -97,7 +104,10 @@ public class StateGameplayRingMove : StateGameplay
             {
                 if (ringMove.ringType == ringStackStart.ringStack.Peek().ringType)
                 {
-                    MoveRing();
+                    if (ringStackEnd.ringStack.Count < 4)
+                    {
+                        MoveRing();
+                    }
                 }
             }
         }
@@ -132,10 +142,19 @@ public class StateGameplayRingMove : StateGameplay
     {
         if (InputMgr.Instance.isUndoMove)
         {
+            if (!ringStackStart.canControl)
+            {
+                ringStackStart.canControl = true;
+            }
             InputMgr.Instance.UndoMove();
         }
         else
         {
+            if (ringStackEnd.IsStackFullSameColor())
+            {
+                GameplayMgr.Instance.stackCompleteNumber++;
+                ringStackEnd.canControl = false;
+            }
             Command commandRingDown = new CommandRingDown(ringStack, ringMove);
             commandRingDown.Execute();
             InputMgr.Instance.moveStack.Push(commandRingDown);
