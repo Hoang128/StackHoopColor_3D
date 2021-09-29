@@ -22,9 +22,8 @@ public class StateGameplayRingUp : StateGameplay
         float newRingYPos = ringStackStart.transform.position.y + 
             ringStackStart.boxCol.size.y / 2 + 
             ringMove.boxCol.size.z / 2;
-        InputMgr.Instance.ringMove.transform.DOMoveY(newRingYPos, 0.2f).SetEase(Ease.OutCubic)
+        ringMove.transform.DOMoveY(newRingYPos, (newRingYPos - ringMove.transform.position.y) / gameplayMgr.ringUpSpeed).SetEase(Ease.OutCubic)
             .OnComplete(() => ChangeToNextState());
-        ringMove.rb.isKinematic = true;
 
         SoundsMgr.Instance.PlaySFX(SoundsMgr.Instance.sfxListConfig.sfxConfigDic[SFXType.RING_UP], false);
     }

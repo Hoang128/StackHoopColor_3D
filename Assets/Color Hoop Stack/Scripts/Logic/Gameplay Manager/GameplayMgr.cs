@@ -13,8 +13,11 @@ public class GameplayMgr : Singleton<GameplayMgr>
     public StackRowListConfig stackRowListConfig;
 
     [Header("Ring Speed")]
-    public float ringMoveSpeed = 12f;
-    public float ringDownSpeed = 2f;
+    public float ringUpSpeed = 0.2f;
+    public float ringMoveSpeed = 0.5f;
+    public float ringDownSpeed = 0.2f;
+    public float ringJumpTime = 0.05f;
+    public float ringJumpPower = 0.05f;
 
     [Header("Positions")]
     public Vector2 ringStackDistance;
@@ -175,8 +178,11 @@ public class GameplayMgr : Singleton<GameplayMgr>
             0.15f;
         foreach (RingStack ringStack in ringStackList)
         {
-            GameObject particleGO = PoolerMgr.Instance.VFXCompletePooler.GetNextPS();
-            particleGO.transform.position = new Vector3(ringStack.transform.position.x, effectYPos, ringStack.transform.position.z);
+            if (ringStack.ringStack.Count == 4)
+            {
+                GameObject particleGO = PoolerMgr.Instance.VFXCompletePooler.GetNextPS();
+                particleGO.transform.position = new Vector3(ringStack.transform.position.x, effectYPos, ringStack.transform.position.z);
+            }
         }
         SoundsMgr.Instance.PlaySFX(SoundsMgr.Instance.sfxListConfig.sfxConfigDic[SFXType.FULL_ALL], false);
     }

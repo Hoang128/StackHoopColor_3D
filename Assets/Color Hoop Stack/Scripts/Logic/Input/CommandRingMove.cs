@@ -6,6 +6,7 @@ public class CommandRingMove : Command
 {
     public RingStack ringStackStart;
     public RingStack ringStackEnd;
+    public int ringMoveNumber = 0;
 
     public CommandRingMove(RingStack ringStackStart, RingStack ringStackEnd)
     {

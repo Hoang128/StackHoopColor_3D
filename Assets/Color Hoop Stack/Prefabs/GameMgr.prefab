@@ -44,6 +44,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   framerate: 60
-  resolution: {x: 900, y: 1600}
+  resolution: {x: 720, y: 1280}
   SoundEnable: 1
   VibrateEnable: 1

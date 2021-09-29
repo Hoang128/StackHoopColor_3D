@@ -624,6 +624,10 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 5567775339646853003, guid: 077e87de36dc56b48bab711967ae4904, type: 3}
+      propertyPath: initializeSize
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6524826981409428934, guid: 077e87de36dc56b48bab711967ae4904, type: 3}
       propertyPath: m_RootOrder
       value: 2

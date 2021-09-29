@@ -23,7 +23,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3109744671781817280}
   - component: {fileID: 925091080732953380}
-  - component: {fileID: 607420310365275612}
   m_Layer: 2
   m_Name: Ring
   m_TagString: Untagged
@@ -59,25 +58,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ringType: 0
-  rb: {fileID: 0}
-  boxCol: {fileID: 0}
+  meshRenderer: {fileID: 3547134452090141863}
+  boxCol: {fileID: 8989186076296549851}
   isMoving: 0
---- !u!54 &607420310365275612
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4570297721393939276}
-  serializedVersion: 2
-  m_Mass: 10
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1001 &1111492941186262233
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -167,5 +150,10 @@ Transform:
 --- !u!1 &638953015158417900 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -8668632612938691275, guid: 470e9c34dcca4f641a23cb60eb506274, type: 3}
+  m_PrefabInstance: {fileID: 1111492941186262233}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &3547134452090141863 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -4731837292817999746, guid: 470e9c34dcca4f641a23cb60eb506274, type: 3}
   m_PrefabInstance: {fileID: 1111492941186262233}
   m_PrefabAsset: {fileID: 0}
