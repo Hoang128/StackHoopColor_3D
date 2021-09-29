@@ -26,8 +26,8 @@ public class InputMgr : Singleton<InputMgr>
         {
             if (!isUndoMove)
                 isUndoMove = true;
-            Command lastMoveCommand = moveStack.Pop();
-            lastMoveCommand.Undo();
+            moveStack.Peek().Undo();
+            moveStack.Pop();
         }
     }
 
@@ -39,7 +39,7 @@ public class InputMgr : Singleton<InputMgr>
             ringMove = ringStackStart.ringStack.Peek();
 
             //command up
-            CommandRingUp newMove = new CommandRingUp(ringStackStart, ringMove);
+            Command newMove = new CommandRingUp(ringStackStart, ringMove);
             newMove.Execute();
             moveStack.Push(newMove);
             return;
@@ -50,7 +50,7 @@ public class InputMgr : Singleton<InputMgr>
             if (ringStackEnd.number == ringStackStart.number)
             {
                 //command down
-                CommandRingDown newMove = new CommandRingDown(ringStackEnd, ringMove);
+                Command newMove = new CommandRingDown(ringStackEnd, ringMove);
                 newMove.Execute();
                 moveStack.Pop();
             }
@@ -62,7 +62,7 @@ public class InputMgr : Singleton<InputMgr>
                     {
                         //Command down
                         ringStackEnd = ringStackStart;
-                        CommandRingDown newMove = new CommandRingDown(ringStackEnd, ringMove);
+                        Command newMove = new CommandRingDown(ringStackEnd, ringMove);
                         newMove.Execute();
                         moveStack.Pop();
                     }
@@ -70,24 +70,24 @@ public class InputMgr : Singleton<InputMgr>
                     {
                         //Command down
                         ringStackEnd = ringStackStart;
-                        CommandRingDown newMove = new CommandRingDown(ringStackEnd, ringMove);
+                        Command newMove = new CommandRingDown(ringStackEnd, ringMove);
                         newMove.Execute();
                         moveStack.Pop();
                     }
                     else if (ringStackEnd.ringStack.Peek().ringType == ringMove.ringType)
                     {
                         //Command move
-                        CommandRingMove newMove = new CommandRingMove(ringStackStart, ringStackEnd);
-                        newMove.Execute();
+                        Command newMove = new CommandRingMove(ringStackStart, ringStackEnd);
                         moveStack.Push(newMove);
+                        newMove.Execute();
                     }
                 }
                 else
                 {
                     //Command move
                     Command newMove = new CommandRingMove(ringStackStart, ringStackEnd);
-                    newMove.Execute();
                     moveStack.Push(newMove);
+                    newMove.Execute();
                 }
             }
 

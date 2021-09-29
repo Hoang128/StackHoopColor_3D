@@ -1,4 +1,5 @@
 using DG.Tweening;
+using Newtonsoft.Json;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,12 +20,11 @@ public class StateGameplayRingMove : StateGameplay
     public override void OnEnter()
     {
         base.OnEnter();
-        string json = JsonUtility.ToJson(InputMgr.Instance.moveStack.Peek());
-        System.Object @object = JsonUtility.FromJson<CommandRingMove>(json);
-        command = (CommandRingMove)@object;
 
         ringStackStart = InputMgr.Instance.ringStackStart;
         ringStackEnd = InputMgr.Instance.ringStackEnd;
+
+        command = (CommandRingMove)InputMgr.Instance.moveStack.Peek();
 
         MoveRing();
     }
@@ -49,13 +49,14 @@ public class StateGameplayRingMove : StateGameplay
         ringMove = ringStackStart.ringStack.Pop();
         ringMove.transform.SetParent(ringStackEnd.transform);
         ringStackEnd.ringStack.Push(ringMove);
+        int placeOrder = ringStackEnd.ringStack.Count - 1;
         Ring nextRing = null;
         if (ringStackStart.ringStack.Count > 0)
             nextRing = ringStackStart.ringStack.Peek();
         float newRingYPos = ringStackStart.transform.position.y +
             ringStackStart.boxCol.size.y / 2 +
             ringMove.boxCol.size.z / 2;
-        if (InputMgr.Instance.isUndoMove)
+        if (!InputMgr.Instance.isUndoMove)
         {
             command.ringMoveNumber++;
         }
@@ -64,23 +65,31 @@ public class StateGameplayRingMove : StateGameplay
             command.ringMoveNumber--;
         }
 
+        if (InputMgr.Instance.isUndoMove)
+        {
+            if (command.ringMoveNumber == 0)
+            {
+                nextRing = null;
+            }
+        }
+
         if (ringMove.transform.position.y != newRingYPos)
         {
             ringMove.transform.DOMoveY(newRingYPos, (newRingYPos - ringMove.transform.position.y) / gameplayMgr.ringUpSpeed)
-                .OnComplete(() => BringRingToNewStack(ringMove, nextRing));
+                .OnComplete(() => BringRingToNewStack(ringMove, nextRing, placeOrder));
         }
         else
         {
-            BringRingToNewStack(ringMove, nextRing);
+            BringRingToNewStack(ringMove, nextRing, placeOrder);
         }
     }
 
-    public void BringRingToNewStack(Ring ringMove, Ring nextRing)
+    public void BringRingToNewStack(Ring ringMove, Ring nextRing, int placeOrder)
     {
         Vector3 newPos = new Vector3(ringStackEnd.transform.position.x, ringMove.transform.position.y, ringStackEnd.transform.position.z);
         float distance = Vector3.Distance(ringMove.transform.position, newPos);
         SoundsMgr.Instance.PlaySFX(SoundsMgr.Instance.sfxListConfig.sfxConfigDic[SFXType.RING_MOVE], false);
-        ringMove.transform.DOMove(newPos, distance / gameplayMgr.ringMoveSpeed).OnComplete(()=>DropRingDown(ringMove, nextRing));
+        ringMove.transform.DOMove(newPos, distance / gameplayMgr.ringMoveSpeed).OnComplete(()=>DropRingDown(ringMove, nextRing, placeOrder));
 
         if (!InputMgr.Instance.isUndoMove)
         {
@@ -101,17 +110,17 @@ public class StateGameplayRingMove : StateGameplay
         }
     }
 
-    public void DropRingDown(Ring ring, Ring nextRing)
+    public void DropRingDown(Ring ring, Ring nextRing, int placeOrder)
     {
-        if (!InputMgr.Instance.isUndoMove)
+        if ((nextRing == null) || (nextRing.ringType != ring.ringType))
         {
-            if ((nextRing == null) || (nextRing.ringType != ring.ringType))
-            {
-                ActiveCommandRingDown(ringStackEnd, ringMove);
-                return;
-            }
+            InputMgr.Instance.ringMove = ringMove;
+            ActiveCommandRingDown(ringStackEnd, ringMove);
+            return;
         }
-        float newY = -1.123066f + ringStackEnd.boxCol.size.z / 2 + ring.boxCol.size.z / 2 + ring.boxCol.size.z * (ringStackEnd.ringStack.Count - 1);
+
+        Utils.Common.Log("place order = " + placeOrder);
+        float newY = -1.123066f + ringStackEnd.boxCol.size.z / 2 + ring.boxCol.size.z / 2 + ring.boxCol.size.z * placeOrder;
         ring.transform.DOMoveY(newY, (ring.transform.position.y - newY) / gameplayMgr.ringDownSpeed)
             .OnComplete(
                 () => ring.transform.DOJump(ring.transform.position, gameplayMgr.ringJumpPower, 2, gameplayMgr.ringJumpTime)

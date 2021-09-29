@@ -17,6 +17,7 @@ public class StateGameplayRingDown : StateGameplay
 
         Ring ringMove = InputMgr.Instance.ringMove;
         RingStack ringStackEnd = InputMgr.Instance.ringStackEnd;
+        Utils.Common.Log("place order = " + (ringStackEnd.ringStack.Count - 1));
         float newY = -1.123066f + ringStackEnd.boxCol.size.z / 2 + ringMove.boxCol.size.z / 2 + ringMove.boxCol.size.z * (ringStackEnd.ringStack.Count - 1);
         ringMove.transform.DOMoveY(newY, (ringMove.transform.position.y - newY) / gameplayMgr.ringDownSpeed)
             .OnComplete(
