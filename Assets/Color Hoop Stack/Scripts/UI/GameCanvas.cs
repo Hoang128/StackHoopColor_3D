@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameCanvas : MonoBehaviour
 {
-    public NextLevelButton nextLevelButton;
+    public WinMenu winMenu;
     public RestartButton restartButton;
     public MoreStackButton moreStackButton;
     public UndoButton undoButton;
@@ -18,14 +18,16 @@ public class GameCanvas : MonoBehaviour
 
     public void InitLevelUI()
     {
-        nextLevelButton.gameObject.SetActive(false);
+        winMenu.gameObject.SetActive(false);    
+        restartButton.gameObject.SetActive(true);
         moreStackButton.gameObject.SetActive(true);
         undoButton.gameObject.SetActive(true);
     }
 
     public void CompleteLevelUI()
     {
-        nextLevelButton.gameObject.SetActive(true);
+        winMenu.gameObject.SetActive(true);
+        restartButton.gameObject.SetActive(false);
         moreStackButton.gameObject.SetActive(false);
         undoButton.gameObject.SetActive(false);
     }

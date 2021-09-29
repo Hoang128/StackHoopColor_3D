@@ -11,11 +11,25 @@ public class SettingPanel : MenuPanel
     {
         ratePanel.SetActive(true);
         gameObject.SetActive(false);
+        SoundsMgr.Instance.PlaySFX(SoundsMgr.Instance.sfxListConfig.sfxConfigDic[SFXType.BUTTON], false);
     }
 
     public void OpenPolicyPanel()
     {
         policyPanel.SetActive(true);
         gameObject.SetActive(false);
+        SoundsMgr.Instance.PlaySFX(SoundsMgr.Instance.sfxListConfig.sfxConfigDic[SFXType.BUTTON], false);
+    }
+
+    public void SaveSetting()
+    {
+        FileHandler fileHandler = new FileHandler();
+        fileHandler.SaveData();
+    }
+
+    public void DisablePanel()
+    {
+        SaveSetting();
+        base.DisablePanel();
     }
 }

@@ -10,8 +10,20 @@ public class VibrateButton : MonoBehaviour
     {
         cross.SetActive(false);
     }
+    public void OnEnable()
+    {
+        if (GameManager.Instance.VibrateEnable)
+        {
+            cross.SetActive(false);
+        }
+        else
+        {
+            cross.SetActive(true);
+        }
+    }
     public void OnClickButton()
     {
+        SoundsMgr.Instance.PlaySFX(SoundsMgr.Instance.sfxListConfig.sfxConfigDic[SFXType.BUTTON], false);
         if (GameManager.Instance.VibrateEnable)
         {
             cross.SetActive(true);

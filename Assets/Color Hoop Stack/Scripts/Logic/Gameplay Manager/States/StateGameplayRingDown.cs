@@ -21,6 +21,8 @@ public class StateGameplayRingDown : StateGameplay
         if (InputMgr.Instance.isUndoMove)
             InputMgr.Instance.isUndoMove = false;
         stateMachine.StateChange(GameplayMgr.Instance.stateGameplayIdle);
+
+        SoundsMgr.Instance.PlaySFX(SoundsMgr.Instance.sfxListConfig.sfxConfigDic[SFXType.RING_DOWN], false);
     }
 
     public override void OnHandleInput()

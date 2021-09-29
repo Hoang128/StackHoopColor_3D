@@ -10,9 +10,20 @@ public class MusicButton : MonoBehaviour
     {
         cross.SetActive(false);
     }
-
+    public void OnEnable()
+    {
+        if (GameManager.Instance.SoundEnable)
+        {
+            cross.active = false;
+        }
+        else
+        {
+            cross.active = true;
+        }
+    }
     public void OnClickButton()
     {
+        SoundsMgr.Instance.PlaySFX(SoundsMgr.Instance.sfxListConfig.sfxConfigDic[SFXType.BUTTON], false);
         if (GameManager.Instance.SoundEnable)
         {
             cross.SetActive(true);

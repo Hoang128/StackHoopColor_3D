@@ -25,6 +25,8 @@ public class StateGameplayRingUp : StateGameplay
         InputMgr.Instance.ringMove.transform.DOMoveY(newRingYPos, 0.2f).SetEase(Ease.OutCubic)
             .OnComplete(() => ChangeToNextState());
         ringMove.rb.isKinematic = true;
+
+        SoundsMgr.Instance.PlaySFX(SoundsMgr.Instance.sfxListConfig.sfxConfigDic[SFXType.RING_UP], false);
     }
 
     public override void OnHandleInput()

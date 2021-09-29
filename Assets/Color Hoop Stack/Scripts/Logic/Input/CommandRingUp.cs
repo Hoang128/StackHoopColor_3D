@@ -11,6 +11,11 @@ public class CommandRingUp : Command
     {
         this.ring = ring;
         this.ringStackStart = ringStackStart;
+
+        if (GameManager.Instance.VibrateEnable)
+        {
+            Handheld.Vibrate();
+        }
     }
 
     public override void Execute()

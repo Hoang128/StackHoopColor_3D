@@ -32,6 +32,7 @@ public class MenuPanel : MonoBehaviour
     {
         animator.Play("MenuUpAnim");
         this.panelToOpen = null;
+        SoundsMgr.Instance.PlaySFX(SoundsMgr.Instance.sfxListConfig.sfxConfigDic[SFXType.BUTTON], false);
     }
 
     public void ExitPanelToOpen(GameObject panelToOpen)

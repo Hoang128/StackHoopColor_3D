@@ -9,6 +9,7 @@ public class UndoButton : MonoBehaviour
         if (GameplayMgr.Instance.stateMachine.CurrentState == GameplayMgr.Instance.stateGameplayIdle)
         {
             InputMgr.Instance.UndoMove();
+            SoundsMgr.Instance.PlaySFX(SoundsMgr.Instance.sfxListConfig.sfxConfigDic[SFXType.BUTTON], false);
         }
     }
 }

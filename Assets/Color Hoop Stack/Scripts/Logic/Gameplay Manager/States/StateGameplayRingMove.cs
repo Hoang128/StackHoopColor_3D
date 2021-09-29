@@ -33,7 +33,12 @@ public class StateGameplayRingMove : StateGameplay
         {
             ringStackEnd.canControl = false;
             gameplayMgr.stackCompleteNumber++;
+            SoundsMgr.Instance.PlaySFX(SoundsMgr.Instance.sfxListConfig.sfxConfigDic[SFXType.FULL_STACK], false);
+            GameObject particleGO = PoolerMgr.Instance.VFXCompletePooler.GetNextPS();
+            particleGO.transform.position = newPos;
         }
+
+        SoundsMgr.Instance.PlaySFX(SoundsMgr.Instance.sfxListConfig.sfxConfigDic[SFXType.RING_MOVE], false);
     }
 
     public override void OnHandleInput()

@@ -100,6 +100,8 @@ public class DataGenMenu : OdinEditorWindow
                 }    
             }
 
+            GenerateRandomColor(levelListConfig);
+
             AssetDatabase.CreateAsset(levelListConfig, levelDataPath);
             AssetDatabase.SaveAssets();
 
@@ -119,6 +121,100 @@ public class DataGenMenu : OdinEditorWindow
             AssetDatabase.DeleteAsset(levelDataPath);
         }
 
+    }
+
+    private void GenerateRandomColor(LevelListConfig levelListConfig)
+    {
+        foreach(LevelConfig levelConfig in levelListConfig.levelList)
+        {
+            GenerateRandomColorInLevel(levelConfig);
+        }
+    }
+
+    private void GenerateRandomColorInLevel(LevelConfig levelConfig)
+    {
+        List<RingType> ringTypeAvailableList = new List<RingType>();
+
+        ringTypeAvailableList.Add(RingType.GREEN_LIME);
+        ringTypeAvailableList.Add(RingType.GREEN_GRASS);
+        ringTypeAvailableList.Add(RingType.BLUE_SKY);
+        ringTypeAvailableList.Add(RingType.BLUE_OCEAN);
+        ringTypeAvailableList.Add(RingType.VIOLET);
+        ringTypeAvailableList.Add(RingType.GRAY);
+        ringTypeAvailableList.Add(RingType.PINK);
+        ringTypeAvailableList.Add(RingType.RED);
+        ringTypeAvailableList.Add(RingType.BLACK);
+        ringTypeAvailableList.Add(RingType.ORANGE);
+
+        List<RingType> ringTypeRandomList = new List<RingType>();
+
+        foreach (RingStackList ringStackList in levelConfig.ringStackList)
+        {
+            foreach(RingType ringType in ringStackList.ringList)
+            {
+                if ((ringType != RingType.RANDOM_1) && (ringType != RingType.RANDOM_2))
+                {
+                    for (int i = 0; i < ringTypeAvailableList.Count; i++)
+                    {
+                        if (ringTypeAvailableList[i] == ringType)
+                            continue;
+                        ringTypeAvailableList.Remove(ringType);
+                        break;
+                    }
+                }
+                else
+                {
+                    if (ringTypeRandomList.Count == 2)
+                        break;
+                    if (ringTypeRandomList.Count == 0)
+                    {
+                        ringTypeRandomList.Add(ringType);
+                        break;
+                    }
+                    if (ringTypeRandomList.Count == 1)
+                    {
+                        if ((ringTypeRandomList[0] == RingType.RANDOM_1) && (ringType == RingType.RANDOM_1))
+                            break;
+                        else if ((ringTypeRandomList[0] == RingType.RANDOM_2) && (ringType == RingType.RANDOM_2))
+                            break;
+                        else
+                            ringTypeRandomList.Add(ringType);
+                    }
+                }
+            }
+        }
+
+        if (ringTypeRandomList.Count > 0)
+        {
+            List<RingType> ringTypeRandomNewList = new List<RingType>();
+
+            Debug.Log("random output number = " + ringTypeRandomList.Count + ", ring input number = " + ringTypeAvailableList.Count + " !");
+            for(int i = 0; i < ringTypeRandomList.Count; i++)
+            {
+                if (ringTypeAvailableList.Count == 0)
+                    break;
+                RingType ringRandom = ringTypeAvailableList[(int)Random.Range(0, ringTypeAvailableList.Count - 1)];
+                ringTypeRandomNewList.Add(ringRandom);
+                ringTypeAvailableList.Remove(ringRandom);
+            }
+
+            for (int i = 0; i < levelConfig.ringStackList.Count; i++)
+            {
+                for (int j = 0; j < levelConfig.ringStackList[i].ringList.Count; j++)
+                {
+                    for (int k = 0; k < ringTypeRandomList.Count; k++)
+                    {
+                        if (levelConfig.ringStackList[i].ringList[j] == ringTypeRandomList[k])
+                        {
+                            if (k < ringTypeRandomNewList.Count)
+                            {
+                                levelConfig.ringStackList[i].ringList[j] = ringTypeRandomNewList[k];
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 #endif

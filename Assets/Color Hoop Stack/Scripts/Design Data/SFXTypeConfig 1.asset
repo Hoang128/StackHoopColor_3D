@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23a55b11863526140bfb1ba33c69703f, type: 3}
+  m_Name: SFXTypeConfig 1
+  m_EditorClassIdentifier: 
+  sfxConfigDic:
+    keys: 0000000001000000020000000300000004000000060000000500000007000000
+    values:
+    - {fileID: 8300000, guid: 9f98a04b7c977784ea3f3d13554a3e3b, type: 3}
+    - {fileID: 8300000, guid: 9443a666f2c1b8e4c8ba1128162ff740, type: 3}
+    - {fileID: 8300000, guid: 6ed25417a6d69fb42bcb6ef36225972c, type: 3}
+    - {fileID: 8300000, guid: e44b1c694d37d664ea029506fc193dbc, type: 3}
+    - {fileID: 8300000, guid: cb69940f5b380db4b9fbea1065918d98, type: 3}
+    - {fileID: 8300000, guid: 766b83535b36bc647be49cbfb1965be6, type: 3}
+    - {fileID: 8300000, guid: fc501d5783b1e1540878339db15e17a5, type: 3}
+    - {fileID: 8300000, guid: c24d9b65493baec4db95688cf2c95ba3, type: 3}
