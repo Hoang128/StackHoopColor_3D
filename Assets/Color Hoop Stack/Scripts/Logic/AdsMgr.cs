@@ -24,6 +24,7 @@ public class AdsMgr : Singleton<AdsMgr>
         // Initialize the Google Mobile Ads SDK.
         MobileAds.Initialize(initStatus => { });
         StartCoroutine(LoadRewardedAdsAfter(2f));
+        RequestBanner();
     }
     public void RequestBanner()
     {

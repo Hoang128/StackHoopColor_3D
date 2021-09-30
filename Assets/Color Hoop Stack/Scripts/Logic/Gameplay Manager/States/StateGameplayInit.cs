@@ -15,10 +15,6 @@ public class StateGameplayInit : StateGameplay
         base.OnEnter();
 
         InitLevel();
-        if (AdsMgr.Instance.interstitialAd.IsLoaded())
-        {
-            AdsMgr.Instance.interstitialAd.Show();
-        }
     }
 
     public override void OnHandleInput()

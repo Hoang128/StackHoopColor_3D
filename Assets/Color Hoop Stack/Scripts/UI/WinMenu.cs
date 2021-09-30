@@ -25,6 +25,12 @@ public class WinMenu : MonoBehaviour
     {
         backgroundPanel.gameObject.SetActive(false);
         GameplayMgr.Instance.GoToLevel(GameplayMgr.Instance.currentLevel + 1);
+
+        AdsMgr.Instance.RequestInterstitial();
+        if (AdsMgr.Instance.interstitialAd.IsLoaded())
+        {
+            AdsMgr.Instance.interstitialAd.Show();
+        }
     }
 
     public void PlayEndAnimation()
