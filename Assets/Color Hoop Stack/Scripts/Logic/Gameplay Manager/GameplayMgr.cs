@@ -63,7 +63,7 @@ public class GameplayMgr : Singleton<GameplayMgr>
     // Start is called before the first frame update
     private void Start()
     {
-
+        AdsMgr.Instance.RequestBanner();
         FileHandler fileHandler = new FileHandler();
         if (!fileHandler.IsSaveDataExist())
         {

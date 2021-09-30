@@ -377,7 +377,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 2142807145871775250}
   m_OnClick:
     m_PersistentCalls:
@@ -406,6 +406,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58d28a40aad681d489fff44a551433c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  button: {fileID: 8264421164450252691}
 --- !u!1 &1819060521942028107
 GameObject:
   m_ObjectHideFlags: 0
@@ -697,6 +698,7 @@ MonoBehaviour:
   backgroundPanel: {fileID: 2594609496920938611}
   lFirework: {fileID: 6984980335816078696}
   rFirework: {fileID: 7028756783032145785}
+  fireworkTime: 2
 --- !u!1 &2211558163749501724
 GameObject:
   m_ObjectHideFlags: 0
@@ -938,7 +940,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -8.414673, y: -0.00012207031}
+  m_AnchoredPosition: {x: -8.414795, y: -0.00012207031}
   m_SizeDelta: {x: 16.800049, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3572537611717730822
@@ -3621,6 +3623,7 @@ MonoBehaviour:
   restartButton: {fileID: 2878028965468845842}
   moreStackButton: {fileID: 8718856726535482900}
   undoButton: {fileID: 3563087700049151998}
+  winPanelTime: 2.5
 --- !u!1001 &7075030754525922538
 PrefabInstance:
   m_ObjectHideFlags: 0

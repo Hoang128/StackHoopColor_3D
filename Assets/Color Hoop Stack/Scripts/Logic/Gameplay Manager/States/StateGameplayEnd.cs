@@ -26,6 +26,8 @@ public class StateGameplayEnd : StateGameplay
         }
 
         gameplayMgr.ringStackList.Clear();
+
+        AdsMgr.Instance.RequestInterstitial();
     }
 
     public override void OnHandleInput()
