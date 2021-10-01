@@ -14,7 +14,7 @@ public class StateGameplayEnd : StateGameplay
     {
         base.OnEnter();
 
-        foreach(RingStack ringStack in gameplayMgr.ringStackList)
+        foreach (RingStack ringStack in gameplayMgr.ringStackList)
         {
             while (ringStack.ringStack.Count > 0)
             {

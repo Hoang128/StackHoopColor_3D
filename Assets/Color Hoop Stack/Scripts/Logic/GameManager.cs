@@ -17,6 +17,7 @@ public class GameManager : Singleton<GameManager>
 #if !UNITY_EDITOR
         Application.targetFrameRate = framerate;
         Screen.SetResolution(resolution.x, resolution.y, true);
+        GoogleAdMobController.Instance.Init();
 #endif
     }
 }

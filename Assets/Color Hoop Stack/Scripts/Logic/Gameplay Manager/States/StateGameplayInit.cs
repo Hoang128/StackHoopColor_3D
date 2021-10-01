@@ -14,7 +14,9 @@ public class StateGameplayInit : StateGameplay
     {
         base.OnEnter();
 
-        InitLevel();
+        InitLevel();       
+        GoogleAdMobController.Instance.ShowInterstitialAd();
+        GoogleAdMobController.Instance.RequestAndLoadRewardedAd();
     }
 
     public override void OnHandleInput()

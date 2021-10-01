@@ -15,8 +15,7 @@ public class MoreStackButton : MonoBehaviour
 
     public void AddMoreStack()
     {
-        button.interactable = false;
-        AdsMgr.Instance.UserChoseToWatchAd();
+        GoogleAdMobController.Instance.ShowRewardedAd();
         SoundsMgr.Instance.PlaySFX(SoundsMgr.Instance.sfxListConfig.sfxConfigDic[SFXType.BUTTON], false);
     }
 

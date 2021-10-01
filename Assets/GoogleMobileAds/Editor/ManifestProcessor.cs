@@ -12,6 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+//test id
+
 #if UNITY_ANDROID
 using System.Collections.Generic;
 using System.IO;
@@ -85,7 +87,8 @@ public class ManifestProcessor : IPreprocessBuild
                 .Where( elem => elem.Name.LocalName.Equals("meta-data"));
 
         XElement elemGMAEnabled = GetMetaElement(metas, META_APPLICATION_ID);
-        string appId = GoogleMobileAdsSettings.Instance.GoogleMobileAdsAndroidAppId;
+        //string appId = GoogleMobileAdsSettings.Instance.GoogleMobileAdsAndroidAppId;
+        string appId = "ca-app-pub-3940256099942544~3347511713";
 
         if (appId.Length == 0)
         {

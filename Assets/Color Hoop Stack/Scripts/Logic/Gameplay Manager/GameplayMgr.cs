@@ -63,7 +63,6 @@ public class GameplayMgr : Singleton<GameplayMgr>
     // Start is called before the first frame update
     private void Start()
     {
-        //AdsMgr.Instance.RequestBanner();
         FileHandler fileHandler = new FileHandler();
         if (!fileHandler.IsSaveDataExist())
         {
@@ -130,6 +129,8 @@ public class GameplayMgr : Singleton<GameplayMgr>
         {
             Utils.Common.Log("Reached ring stack number limit!");
         }
+
+        GoogleAdMobController.Instance.RequestAndLoadRewardedAd();
     }
 
 #if UNITY_EDITOR
