@@ -34,12 +34,14 @@ public class GameplayMgr : Singleton<GameplayMgr>
     [HideInInspector] public StateGameplay stateGameplayRingDown;
     [HideInInspector] public StateGameplay stateGameplayCompleteLevel;
     [HideInInspector] public StateGameplay stateGameplayEnd;
+    [HideInInspector] public StateGameplay stateGameplayAddStack;
 
     [HideInInspector] public StateMachine stateMachine;
 
     [HideInInspector] public List<RingStack> ringStackList;
     [HideInInspector] public bool touched = false;
     [HideInInspector] public bool readyToTouch = false;
+    [HideInInspector] public bool firstLoad = true;
     public int ringTypeNumber = 0;
     public int stackCompleteNumber = 0;
 
@@ -58,11 +60,13 @@ public class GameplayMgr : Singleton<GameplayMgr>
         stateGameplayRingDown = new StateGameplayRingDown(this, stateMachine);
         stateGameplayCompleteLevel = new StateGameplayCompleteLevel(this, stateMachine);
         stateGameplayEnd = new StateGameplayEnd(this, stateMachine);
+        stateGameplayAddStack = new StateGameplayAddStack(this, stateMachine);
     }
 
     // Start is called before the first frame update
     private void Start()
     {
+        GoogleAdMobController.Instance.Init();
         FileHandler fileHandler = new FileHandler();
         if (!fileHandler.IsSaveDataExist())
         {
@@ -131,6 +135,11 @@ public class GameplayMgr : Singleton<GameplayMgr>
         }
 
         GoogleAdMobController.Instance.RequestAndLoadRewardedAd();
+    }
+
+    public void ChangeStateToAddStack()
+    {
+        stateMachine.StateChange(stateGameplayAddStack);
     }
 
 #if UNITY_EDITOR
