@@ -47,7 +47,7 @@ MonoBehaviour:
   levelListConfig: {fileID: 11400000, guid: 2944caf5a213c3e46973245f509e7e6f, type: 2}
   stackRowListConfig: {fileID: 11400000, guid: 25d3b10827b0bf943b35e9a6d29af7a6, type: 2}
   ringUpSpeed: 8
-  ringMoveSpeed: 12
+  ringMoveSpeed: 20
   ringDownSpeed: 8
   ringJumpTime: 0.1
   ringJumpPower: 0.05
@@ -56,5 +56,6 @@ MonoBehaviour:
   ringStackList: []
   touched: 0
   readyToTouch: 0
+  firstLoad: 1
   ringTypeNumber: 0
   stackCompleteNumber: 0
