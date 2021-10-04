@@ -13,7 +13,6 @@ public class StateGameplayCompleteLevel : StateGameplay
     public override void OnEnter()
     {
         base.OnEnter();
-        GoogleAdMobController.Instance.RequestAndLoadInterstitialAd();
         Utils.Common.Log("win game!");
         EventDispatcher.Instance.PostEvent(EventID.ON_COMPLETE_LEVEL);
         gameplayMgr.TriggerCompleteLevelEffect(1f);

@@ -9,8 +9,8 @@ public class MoreStackButton : MonoBehaviour
 
     private void Start()
     {
-        EventDispatcher.Instance.RegisterListener(EventID.ON_LOADED_REWARDED_ADS, param => EnableButton());
-        EventDispatcher.Instance.RegisterListener(EventID.ON_FAILED_LOAD_REWARDED_ADS, param => DisableButton());
+        EventDispatcher.Instance.RegisterListener(EventID.ON_LOADED_REWARDED_AD, param => EnableButton());
+        EventDispatcher.Instance.RegisterListener(EventID.ON_FAILED_LOAD_REWARDED_AD, param => DisableButton());
     }
 
     public void AddMoreStack()

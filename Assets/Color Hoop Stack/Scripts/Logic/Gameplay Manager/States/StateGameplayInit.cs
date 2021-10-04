@@ -15,15 +15,8 @@ public class StateGameplayInit : StateGameplay
         base.OnEnter();
 
         InitLevel();
-        if (gameplayMgr.firstLoad)
-        {
-            gameplayMgr.firstLoad = false;
-            return;
-        }
-        else
-        {
-            GoogleAdMobController.Instance.ShowInterstitialAd();
-        }
+        EventDispatcher.Instance.PostEvent(EventID.ON_FAILED_LOAD_REWARDED_AD);
+        GoogleAdMobController.Instance.RequestBannerAd();
         GoogleAdMobController.Instance.RequestAndLoadRewardedAd();
     }
 

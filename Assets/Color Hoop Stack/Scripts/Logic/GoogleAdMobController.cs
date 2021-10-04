@@ -62,7 +62,6 @@ public class GoogleAdMobController : Singleton<GoogleAdMobController>
         MobileAdsEventExecutor.ExecuteInUpdate(() =>
         {
             statusText.text = "Initialization complete";
-            RequestBannerAd();
         });
     }
 
@@ -139,6 +138,30 @@ public class GoogleAdMobController : Singleton<GoogleAdMobController>
 
         // Load a banner ad
         bannerView.LoadAd(CreateAdRequest());
+    }
+
+    public void EnableMoreStackButton()
+    {
+        if (statusText.text.Equals("Requesting Rewarded Ad."))
+        {
+            EventDispatcher.Instance.PostEvent(EventID.ON_LOADED_REWARDED_AD);
+        }
+    }
+
+    public void DisableMoreStackButton()
+    {
+        if (statusText.text.Equals("Requesting Rewarded Ad."))
+        {
+            EventDispatcher.Instance.PostEvent(EventID.ON_FAILED_LOAD_REWARDED_AD);
+        }
+    }
+
+    public void ReloadRewardedAd()
+    {
+        if (statusText.text.Equals("Requesting Rewarded Ad."))
+        {
+            RequestAndLoadRewardedAd();
+        }
     }
 
     public void DestroyBannerAd()
