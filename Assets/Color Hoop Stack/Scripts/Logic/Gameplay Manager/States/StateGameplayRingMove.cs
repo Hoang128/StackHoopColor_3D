@@ -83,7 +83,7 @@ public class StateGameplayRingMove : StateGameplay
         if (ringMove.transform.position.y != newRingYPos)
         {
             ringMove.transform.DOMoveY(newRingYPos, (newRingYPos - ringMove.transform.position.y) / gameplayMgr.ringUpSpeed)
-                .OnComplete(() => BringRingToNewStack(ringMove, nextRing, placeOrder));
+                .SetEase(Ease.Linear).OnComplete(() => BringRingToNewStack(ringMove, nextRing, placeOrder));
         }
         else
         {
@@ -96,7 +96,7 @@ public class StateGameplayRingMove : StateGameplay
         Vector3 newPos = new Vector3(ringStackEnd.transform.position.x, ringMove.transform.position.y, ringStackEnd.transform.position.z);
         float distance = Vector3.Distance(ringMove.transform.position, newPos);
         SoundsMgr.Instance.PlaySFX(SoundsMgr.Instance.sfxListConfig.sfxConfigDic[SFXType.RING_MOVE], false);
-        ringMove.transform.DOMove(newPos, distance / gameplayMgr.ringMoveSpeed).OnComplete(()=>DropRingDown(ringMove, nextRing, placeOrder));
+        ringMove.transform.DOMove(newPos, distance / gameplayMgr.ringMoveSpeed).SetEase(Ease.Linear).OnComplete(()=>DropRingDown(ringMove, nextRing, placeOrder));
 
         if (!InputMgr.Instance.isUndoMove)
         {
@@ -132,7 +132,7 @@ public class StateGameplayRingMove : StateGameplay
         Utils.Common.Log("place order = " + placeOrder);
         float newY = -1.123066f + ringStackEnd.boxCol.size.z / 2 + ring.boxCol.size.z / 2 + ring.boxCol.size.z * placeOrder;
         ring.transform.DOMoveY(newY, (ring.transform.position.y - newY) / gameplayMgr.ringDownSpeed)
-            .OnComplete(
+            .SetEase(Ease.Linear).OnComplete(
                 () => ring.transform.DOJump(ring.transform.position, gameplayMgr.ringJumpPower, 2, gameplayMgr.ringJumpTime)
             );
         SoundsMgr.Instance.PlaySFX(SoundsMgr.Instance.sfxListConfig.sfxConfigDic[SFXType.RING_DOWN], false);

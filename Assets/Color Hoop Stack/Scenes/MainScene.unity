@@ -268,10 +268,6 @@ PrefabInstance:
       propertyPath: OnAdFailedToShowEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 3238215952888773532, guid: e4caa0d3b36ed384f9758d30573bc4e0, type: 3}
-      propertyPath: OnUserEarnedRewardEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4caa0d3b36ed384f9758d30573bc4e0, type: 3}
 --- !u!1 &1331286093

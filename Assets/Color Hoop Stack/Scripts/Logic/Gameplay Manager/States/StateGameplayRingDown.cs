@@ -20,7 +20,7 @@ public class StateGameplayRingDown : StateGameplay
         Utils.Common.Log("place order = " + (ringStackEnd.ringStack.Count - 1));
         float newY = -1.123066f + ringStackEnd.boxCol.size.z / 2 + ringMove.boxCol.size.z / 2 + ringMove.boxCol.size.z * (ringStackEnd.ringStack.Count - 1);
         ringMove.transform.DOMoveY(newY, (ringMove.transform.position.y - newY) / gameplayMgr.ringDownSpeed)
-            .OnComplete(
+            .SetEase(Ease.Linear).OnComplete(
                 ()=>ringMove.transform.DOJump(ringMove.transform.position, gameplayMgr.ringJumpPower, 2, gameplayMgr.ringJumpTime)
                 .OnComplete(()=>ChangeToNextState()
             )
