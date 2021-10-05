@@ -125,6 +125,8 @@
     <Compile Include="Assets\Color Hoop Stack\Scripts\Logic\Poolers\RingPooler.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\Logic\Gameplay Manager\RingStack.cs" />
     <Compile Include="Assets\DOTween\Modules\DOTweenModulePhysics.cs" />
+    <Compile Include="Assets\Color Hoop Stack\Scripts\Logic\MapData.cs" />
+    <Compile Include="Assets\Color Hoop Stack\Scripts\Logic\RingStackData.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

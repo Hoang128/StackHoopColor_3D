@@ -42,6 +42,7 @@ public class GameplayMgr : Singleton<GameplayMgr>
     [HideInInspector] public bool touched = false;
     [HideInInspector] public bool readyToTouch = false;
     [HideInInspector] public bool firstLoad = true;
+    private Stack<List<RingStack>> ringStackListStack;
     
     public int ringTypeNumber = 0;
     public int stackCompleteNumber = 0;
@@ -49,6 +50,7 @@ public class GameplayMgr : Singleton<GameplayMgr>
     private void Awake()
     {
 
+        ringStackListStack = new Stack<List<RingStack>>();
         ringStackList = new List<RingStack>();
 
         stateMachine = new StateMachine();
