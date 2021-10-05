@@ -133,8 +133,6 @@ public class GameplayMgr : Singleton<GameplayMgr>
         {
             Utils.Common.Log("Reached ring stack number limit!");
         }
-
-        GoogleAdMobController.Instance.RequestAndLoadRewardedAd();
     }
 
     public void ChangeStateToAddStack()

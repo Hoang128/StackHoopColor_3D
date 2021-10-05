@@ -23,18 +23,13 @@ public class GameCanvas : MonoBehaviour
     {
         if (enableWinMenu != null)
             StopCoroutine(enableWinMenu);
-        winMenu.gameObject.SetActive(false);    
-        restartButton.gameObject.SetActive(true);
-        moreStackButton.gameObject.SetActive(true);
-        undoButton.gameObject.SetActive(true);
+        winMenu.gameObject.SetActive(false);
+        moreStackButton.InitLevel();
     }
 
     public void CompleteLevelUI()
     {
         enableWinMenu = StartCoroutine(EnableWinMenuAfter(winPanelTime));
-        restartButton.gameObject.SetActive(false);
-        moreStackButton.gameObject.SetActive(false);
-        undoButton.gameObject.SetActive(false);
     }
 
     private IEnumerator EnableWinMenuAfter(float seconds)

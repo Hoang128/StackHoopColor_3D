@@ -62,6 +62,8 @@ public class GoogleAdMobController : Singleton<GoogleAdMobController>
         MobileAdsEventExecutor.ExecuteInUpdate(() =>
         {
             statusText.text = "Initialization complete";
+            RequestBannerAd();
+            RequestAndLoadRewardedAd();
         });
     }
 
@@ -138,30 +140,6 @@ public class GoogleAdMobController : Singleton<GoogleAdMobController>
 
         // Load a banner ad
         bannerView.LoadAd(CreateAdRequest());
-    }
-
-    public void EnableMoreStackButton()
-    {
-        if (statusText.text.Equals("Requesting Rewarded Ad."))
-        {
-            EventDispatcher.Instance.PostEvent(EventID.ON_LOADED_REWARDED_AD);
-        }
-    }
-
-    public void DisableMoreStackButton()
-    {
-        if (statusText.text.Equals("Requesting Rewarded Ad."))
-        {
-            EventDispatcher.Instance.PostEvent(EventID.ON_FAILED_LOAD_REWARDED_AD);
-        }
-    }
-
-    public void ReloadRewardedAd()
-    {
-        if (statusText.text.Equals("Requesting Rewarded Ad."))
-        {
-            RequestAndLoadRewardedAd();
-        }
     }
 
     public void DestroyBannerAd()
@@ -264,6 +242,7 @@ public class GoogleAdMobController : Singleton<GoogleAdMobController>
         if (rewardedAd != null)
         {
             rewardedAd.Show();
+            statusText.text = "Showed Rewarded Ad.";
         }
         else
         {
@@ -463,4 +442,38 @@ public class GoogleAdMobController : Singleton<GoogleAdMobController>
     }
 
     #endregion
+
+    public void ReloadRewardedAd()
+    {
+        DisableAdRewaredButton();
+
+        if (statusText.text.Equals("Showed Rewarded Ad."))
+        {
+            EventDispatcher.Instance.PostEvent(EventID.ON_FAILED_LOAD_REWARDED_AD);
+            MobileAdsEventExecutor.ExecuteInUpdate(() =>
+            {
+                RequestAndLoadRewardedAd();
+            });
+        }
+    }
+
+    public void EnableAdRewaredButton()
+    {
+        if (statusText.text.Equals("Requesting Rewarded Ad."))
+        {
+            EventDispatcher.Instance.PostEvent(EventID.ON_LOADED_REWARDED_AD);
+        }
+    }
+
+    public void DisableAdRewaredButton()
+    {
+        if (statusText.text.Equals("Requesting Rewarded Ad."))
+        {
+            EventDispatcher.Instance.PostEvent(EventID.ON_FAILED_LOAD_REWARDED_AD);
+            MobileAdsEventExecutor.ExecuteInUpdate(() =>
+            {
+                RequestAndLoadRewardedAd();
+            });
+        }
+    }
 }
