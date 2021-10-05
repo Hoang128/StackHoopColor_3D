@@ -42,6 +42,7 @@ public class GameplayMgr : Singleton<GameplayMgr>
     [HideInInspector] public bool touched = false;
     [HideInInspector] public bool readyToTouch = false;
     [HideInInspector] public bool firstLoad = true;
+    
     public int ringTypeNumber = 0;
     public int stackCompleteNumber = 0;
 

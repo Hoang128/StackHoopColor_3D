@@ -41,7 +41,6 @@ public class StateGameplayEnd : StateGameplay
     public override void OnExit()
     {
         base.OnExit();
-        GoogleAdMobController.Instance.RequestAndLoadInterstitialAd();
         GoogleAdMobController.Instance.ShowInterstitialAd();
     }
 }
