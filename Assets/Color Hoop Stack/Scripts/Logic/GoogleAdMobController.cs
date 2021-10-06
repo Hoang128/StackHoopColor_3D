@@ -63,7 +63,6 @@ public class GoogleAdMobController : Singleton<GoogleAdMobController>
         {
             statusText.text = "Initialization complete";
             RequestBannerAd();
-            RequestAndLoadRewardedAd();
         });
     }
 

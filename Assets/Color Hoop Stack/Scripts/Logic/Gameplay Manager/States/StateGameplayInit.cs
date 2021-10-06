@@ -16,8 +16,8 @@ public class StateGameplayInit : StateGameplay
 
         InitLevel();
         EventDispatcher.Instance.PostEvent(EventID.ON_FAILED_LOAD_REWARDED_AD);
-        GoogleAdMobController.Instance.RequestAndLoadInterstitialAd();
-        GoogleAdMobController.Instance.RequestAndLoadRewardedAd();
+
+        gameplayMgr.LoadAds(0.5f);
     }
 
     public override void OnHandleInput()

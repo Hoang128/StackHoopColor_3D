@@ -245,4 +245,17 @@ public class GameplayMgr : Singleton<GameplayMgr>
 
         ringTypeNumber = ringTypeList.Count;
     }
+
+    public void LoadAds(float seconds)
+    {
+        StartCoroutine(LoadAdsAfter(seconds));
+    }
+
+    public IEnumerator LoadAdsAfter(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+
+        GoogleAdMobController.Instance.RequestAndLoadInterstitialAd();
+        GoogleAdMobController.Instance.RequestAndLoadRewardedAd();
+    }
 }

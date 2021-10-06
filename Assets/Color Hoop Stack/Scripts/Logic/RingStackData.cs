@@ -4,25 +4,33 @@ using UnityEngine;
 
 public class RingStackData
 {
-    private Stack<Ring> ringStack;
+    private List<Ring> ringList;
     private bool canControl;
     private int number;
 
     public RingStackData()
     {
-        ringStack = new Stack<Ring>();
-        canControl = true;
-        number = 0;
+        this.ringList = new List<Ring>();
+        this.canControl = true;
+        this.number = 0;
     }
 
     public RingStackData(RingStack ringStack)
     {
-        this.canControl = ringStack.canControl;
+        this.CanControl = ringStack.canControl;
         this.number = ringStack.number;
-        
-        foreach (Ring ring in ringStack.ringStack)
+        this.ringList = new List<Ring>();
+
+        if (ringStack.ringStack.Count > 0)
         {
-            this.ringStack.Push(ring);
-        }    
+            foreach (Ring ring in ringStack.ringStack)
+            {
+                this.ringList.Add(ring);
+            }
+        }
     }
+
+    public List<Ring> RingStack { get => ringList; set => ringList = value; }
+    public bool CanControl { get => canControl; set => canControl = value; }
+    public int Number { get => number; set => number = value; }
 }
