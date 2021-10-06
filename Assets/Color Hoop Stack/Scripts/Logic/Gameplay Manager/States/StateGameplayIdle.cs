@@ -15,6 +15,9 @@ public class StateGameplayIdle : StateGameplay
         base.OnEnter();
 
         gameplayMgr.readyToTouch = true;
+
+        FileHandler fileHandler = new FileHandler();
+        fileHandler.SaveLevelData();
     }
 
     public override void OnHandleInput()

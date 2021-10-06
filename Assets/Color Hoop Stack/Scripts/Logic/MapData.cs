@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class MapData
 {
-    private List<RingStackData> listRingStack;
-    private int stackCompleteNumber = 0;
-    private int ringStackNumber = 0;
+    public List<RingStackData> listRingStack;
+    public int stackCompleteNumber = 0;
+    public int ringStackNumber = 0;
 
     public List<RingStackData> ListRingStack { get => listRingStack; set => listRingStack = value; }
     public int StackCompleteNumber { get => stackCompleteNumber; set => stackCompleteNumber = value; }

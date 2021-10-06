@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class RingStackData
 {
-    private List<RingType> ringList;
-    private bool canControl;
-    private int number;
+    public List<RingType> ringList;
+    public bool canControl;
+    public int number;
 
     public RingStackData()
     {
@@ -17,7 +18,7 @@ public class RingStackData
 
     public RingStackData(RingStack ringStack)
     {
-        this.CanControl = ringStack.canControl;
+        this.canControl = ringStack.canControl;
         this.number = ringStack.number;
         this.ringList = new List<RingType>();
 
@@ -29,8 +30,4 @@ public class RingStackData
             }
         }
     }
-
-    public List<RingType> RingList { get => ringList; set => ringList = value; }
-    public bool CanControl { get => canControl; set => canControl = value; }
-    public int Number { get => number; set => number = value; }
 }

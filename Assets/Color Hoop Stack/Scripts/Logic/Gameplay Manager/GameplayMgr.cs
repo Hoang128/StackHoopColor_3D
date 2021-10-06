@@ -71,21 +71,27 @@ public class GameplayMgr : Singleton<GameplayMgr>
     private void Start()
     {
         GoogleAdMobController.Instance.Init();
+        Utils.Common.Log("goo goo gaa gaa!");
         FileHandler fileHandler = new FileHandler();
+        Utils.Common.Log("gooo gooo gaaa gaaa!");
         if (!fileHandler.IsFileExist(fileHandler.settingFilePath))
         {
             fileHandler.SaveSettingDataDefault();
         }
+        Utils.Common.Log("O_O!");
         fileHandler.ReadSettingData();
-        if (!fileHandler.IsFileExist(fileHandler.levelFilePath))
+        Utils.Common.Log("X_X");
+        if (fileHandler.IsFileExist(fileHandler.levelFilePath))
         {
-            fileHandler.SaveLevelDataDefault();
+            fileHandler.LoadLevelData();
+            Utils.Common.Log("OmO");
         }
         else
         {
-            fileHandler.LoadLevelData();
+            fileHandler.SaveLevelDataDefault();
+            Utils.Common.Log("OwO");
         }
-
+       
         stateMachine.StateChange(stateGameplayInit);
     }
 
@@ -330,18 +336,18 @@ public class GameplayMgr : Singleton<GameplayMgr>
         for (int i = 0; i < ringStackList.Count; i++)
         {
             RingStack ringStack = ringStackList[i];
-            ringStack.number = mapData.ListRingStack[i].Number;
-            ringStack.canControl = mapData.ListRingStack[i].CanControl;
+            ringStack.number = mapData.ListRingStack[i].number;
+            ringStack.canControl = mapData.ListRingStack[i].canControl;
 
-            for (int j = mapData.ListRingStack[i].RingList.Count - 1; j >= 0; j--)
+            for (int j = mapData.ListRingStack[i].ringList.Count - 1; j >= 0; j--)
             {
-                if (!(mapData.ListRingStack[i].RingList[j] == RingType.NONE))
+                if (!(mapData.ListRingStack[i].ringList[j] == RingType.NONE))
                 {
-                    GameObject newRing = PoolerMgr.Instance.ringPooler.GetNextRing(mapData.ListRingStack[i].RingList[j]);
+                    GameObject newRing = PoolerMgr.Instance.ringPooler.GetNextRing(mapData.ListRingStack[i].ringList[j]);
                     Ring newRingComp = newRing.GetComponent<Ring>();
                     newRing.transform.position = new Vector3(
                         ringStack.transform.position.x,
-                        -1.123066f + ringStack.boxCol.size.z / 2 + newRingComp.boxCol.size.z / 2 + newRingComp.boxCol.size.z * (mapData.ListRingStack[i].RingList.Count - 1 - j),
+                        -1.123066f + ringStack.boxCol.size.z / 2 + newRingComp.boxCol.size.z / 2 + newRingComp.boxCol.size.z * (mapData.ListRingStack[i].ringList.Count - 1 - j),
                         ringStack.transform.position.z
                         );
 
