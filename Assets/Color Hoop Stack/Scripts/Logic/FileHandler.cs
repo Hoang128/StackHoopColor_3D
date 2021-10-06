@@ -10,6 +10,7 @@ using UnityEngine;
 
 public class LevelData
 {
+    private bool blankData = true;
     private Stack<MapData> mapDataStack;
     private int currentLevel;
     private MapData mapDataCurrent;
@@ -17,14 +18,16 @@ public class LevelData
 
     public LevelData()
     {
+        this.blankData = true;
         this.mapDataStack = new Stack<MapData>();
         this.currentLevel = 0;
         this.mapDataCurrent = new MapData();
         this.ringTypeNumber = 0;
     }
 
-    public LevelData(Stack<MapData> mapDataStack, int currentLevel, MapData mapDataCurrent, int ringTypeNumber)
+    public LevelData(bool blankData, Stack<MapData> mapDataStack, int currentLevel, MapData mapDataCurrent, int ringTypeNumber)
     {
+        this.blankData = blankData;
         this.mapDataStack = new Stack<MapData>(mapDataStack);
         this.currentLevel = currentLevel;
         this.mapDataCurrent = mapDataCurrent;
@@ -35,6 +38,7 @@ public class LevelData
     public int CurrentLevel { get => currentLevel; set => currentLevel = value; }
     public MapData MapDataCurrent { get => mapDataCurrent; set => mapDataCurrent = value; }
     public int RingTypeNumber { get => ringTypeNumber; set => ringTypeNumber = value; }
+    public bool BlankData { get => blankData; set => blankData = value; }
 }
 
     public class FileHandler
@@ -138,6 +142,7 @@ public class LevelData
     public void SaveLevelData()
     {
         LevelData levelData = new LevelData(
+            false,
             GameplayMgr.Instance.mapDataStack, 
             GameplayMgr.Instance.currentLevel, 
             new MapData(GameplayMgr.Instance.ringStackList, GameplayMgr.Instance.stackCompleteNumber, GameplayMgr.Instance.ringStackList.Count), 
@@ -150,6 +155,11 @@ public class LevelData
         {
             outputFile.WriteLine(output);
         }
+    }
+
+    public void SaveLevelDataDefault()
+    {
+        LevelData levelData = new LevelData();
     }
 
     public void LoadLevelData()
@@ -167,7 +177,7 @@ public class LevelData
             GameplayMgr.Instance.currentLevel = levelData.CurrentLevel;
             GameplayMgr.Instance.mapDataStack = new Stack<MapData>(levelData.MapDataStack.Reverse());
             GameplayMgr.Instance.ringTypeNumber = levelData.RingTypeNumber;
-            if (levelData.MapDataStack.Count > 0)
+            if ((!levelData.BlankData) && (levelData.MapDataStack.Count > 0))
                 GameplayMgr.Instance.LoadLevelMapData(levelData.MapDataCurrent);
         }
     }

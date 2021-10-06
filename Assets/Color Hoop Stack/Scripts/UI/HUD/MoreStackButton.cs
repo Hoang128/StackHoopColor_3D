@@ -39,6 +39,7 @@ public class MoreStackButton : MonoBehaviour
 
     public void AddMoreStack()
     {
+        GoogleAdMobController.Instance.rewardedTypeAd = GoogleAdMobController.rewardType.RING_STACK;
         GoogleAdMobController.Instance.ShowRewardedAd();
         DisableButton();
         canUse = false;

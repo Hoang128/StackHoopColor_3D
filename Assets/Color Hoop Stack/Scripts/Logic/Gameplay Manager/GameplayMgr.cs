@@ -46,6 +46,8 @@ public class GameplayMgr : Singleton<GameplayMgr>
     public int ringTypeNumber = 0;
     public int stackCompleteNumber = 0;
 
+    [HideInInspector] public int undoTime = 5;
+
     private void Awake()
     {
 
@@ -75,7 +77,11 @@ public class GameplayMgr : Singleton<GameplayMgr>
             fileHandler.SaveSettingDataDefault();
         }
         fileHandler.ReadSettingData();
-        if (fileHandler.IsFileExist(fileHandler.levelFilePath))
+        if (!fileHandler.IsFileExist(fileHandler.levelFilePath))
+        {
+            fileHandler.SaveLevelDataDefault();
+        }
+        else
         {
             fileHandler.LoadLevelData();
         }
@@ -140,9 +146,15 @@ public class GameplayMgr : Singleton<GameplayMgr>
         }
     }
 
-    public void ChangeStateToAddStack()
+    public void EarnReward()
     {
-        stateMachine.StateChange(stateGameplayAddStack);
+        if (GoogleAdMobController.Instance.rewardedTypeAd == GoogleAdMobController.rewardType.RING_STACK)
+            stateMachine.StateChange(stateGameplayAddStack);
+        else if (GoogleAdMobController.Instance.rewardedTypeAd == GoogleAdMobController.rewardType.UNDO)
+        {
+            UndoLevel();
+            undoTime--;
+        }
     }
 
 #if UNITY_EDITOR
@@ -267,6 +279,19 @@ public class GameplayMgr : Singleton<GameplayMgr>
         {
             LoadLevelMapData(mapDataStack.Pop());
             stateMachine.StateChange(stateGameplayIdle);
+
+            if (undoTime > 0)
+            {
+                undoTime--;
+                EventDispatcher.Instance.PostEvent(EventID.ON_CHANGED_UNDO_TIME);
+                return;
+            }
+            else
+            {
+                undoTime = 5;
+                EventDispatcher.Instance.PostEvent(EventID.ON_CHANGED_UNDO_TIME);
+                return;
+            }
         }
         else
         {

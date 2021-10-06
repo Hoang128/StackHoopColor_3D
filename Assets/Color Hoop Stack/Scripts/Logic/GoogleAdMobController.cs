@@ -29,7 +29,8 @@ public class GoogleAdMobController : Singleton<GoogleAdMobController>
     public TextMeshProUGUI fpsMeter;
     public TextMeshProUGUI statusText;
     private adType adTypeShowing = adType.NONE;
-    private rewardType rewardedTypeAd = rewardType.NONE;
+    [HideInInspector] 
+    public rewardType rewardedTypeAd = rewardType.NONE;
 
     #region UNITY MONOBEHAVIOR METHODS
 
@@ -482,10 +483,5 @@ public class GoogleAdMobController : Singleton<GoogleAdMobController>
                 RequestAndLoadRewardedAd();
             });
         }
-    }
-
-    public void OnClosedAd()
-    {
-        adTypeShowing = adType.NONE;
     }
 }

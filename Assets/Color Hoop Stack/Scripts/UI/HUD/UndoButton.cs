@@ -8,8 +8,6 @@ public class UndoButton : MonoBehaviour
 {
     [SerializeField]
     private Button button;
-    [HideInInspector]
-    private int UndoTime = 5;
     public TextMeshProUGUI undoNumberText;
     [SerializeField]
     private GameObject watchAd; 
@@ -20,6 +18,7 @@ public class UndoButton : MonoBehaviour
     {
         EventDispatcher.Instance.RegisterListener(EventID.ON_LOADED_REWARDED_AD, param => EnableButtonAd());
         EventDispatcher.Instance.RegisterListener(EventID.ON_FAILED_LOAD_REWARDED_AD, param => DisableButtonAd());
+        EventDispatcher.Instance.RegisterListener(EventID.ON_CHANGED_UNDO_TIME, param => OnChangedUndoTime());
     }
 
     private void Update()
@@ -46,45 +45,22 @@ public class UndoButton : MonoBehaviour
         {
             if (GameplayMgr.Instance.mapDataStack.Count > 0)
             {
-                HandleUndoNumber();
-
-                if (UndoTime == 0)
-                {
-                    watchAd.SetActive(true);
-                }
-                else if (UndoTime == 5)
+                if (GameplayMgr.Instance.undoTime == 0)
                 {
                     watchAd.SetActive(false);
+                    GoogleAdMobController.Instance.rewardedTypeAd = GoogleAdMobController.rewardType.UNDO;
                     GoogleAdMobController.Instance.ShowRewardedAd();
                 }
 
-                undoNumberText.text = "<sprite index=" + UndoTime + ">";
                 GameplayMgr.Instance.UndoLevel();
                 SoundsMgr.Instance.PlaySFX(SoundsMgr.Instance.sfxListConfig.sfxConfigDic[SFXType.BUTTON], false);
             }
         }
     }
 
-    public void HandleUndoNumber()
-    {
-        if (UndoTime > 0)
-        {
-            if (UndoTime == 0)
-            {
-                UndoTime = 5;
-                return;
-            }
-            UndoTime--;
-        }
-        else
-        {
-            UndoTime = 5;
-        }
-    }
-
     public void EnableButtonAd()
     {
-        if (UndoTime == 0)
+        if (GameplayMgr.Instance.undoTime == 0)
         {
             EnableButton();
             Debug.Log("He he me go active OwO !");
@@ -93,7 +69,7 @@ public class UndoButton : MonoBehaviour
 
     public void DisableButtonAd()
     {
-        if (UndoTime == 0)
+        if (GameplayMgr.Instance.undoTime == 0)
         {
             DisableButton();
             Debug.Log("He he me go deactive OwO !");
@@ -111,5 +87,14 @@ public class UndoButton : MonoBehaviour
     {
         riseEnableButtonFlag = false;
         riseDisableButtonFlag = true;
+    }
+
+    public void OnChangedUndoTime()
+    {
+        undoNumberText.text = "<sprite index=" + GameplayMgr.Instance.undoTime + ">";
+        if (GameplayMgr.Instance.undoTime == 0)
+        {
+            watchAd.SetActive(true);
+        }
     }
 }
