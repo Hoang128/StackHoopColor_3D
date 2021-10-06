@@ -26,6 +26,7 @@ public class StateGameplayEnd : StateGameplay
         }
 
         gameplayMgr.ringStackList.Clear();
+        gameplayMgr.mapDataStack.Clear();
     }
 
     public override void OnHandleInput()

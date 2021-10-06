@@ -9,6 +9,9 @@ using TMPro;
 
 public class GoogleAdMobController : Singleton<GoogleAdMobController>
 {
+    public enum adType {NONE, BANNER, INTERSTITIAL, REWARED};
+    public enum rewardType {NONE, RING_STACK, UNDO};
+
     private AppOpenAd appOpenAd;
     private BannerView bannerView;
     private InterstitialAd interstitialAd;
@@ -25,7 +28,8 @@ public class GoogleAdMobController : Singleton<GoogleAdMobController>
     public bool showFpsMeter = true;
     public TextMeshProUGUI fpsMeter;
     public TextMeshProUGUI statusText;
-
+    private adType adTypeShowing = adType.NONE;
+    private rewardType rewardedTypeAd = rewardType.NONE;
 
     #region UNITY MONOBEHAVIOR METHODS
 
@@ -189,6 +193,7 @@ public class GoogleAdMobController : Singleton<GoogleAdMobController>
         if (interstitialAd.IsLoaded())
         {
             interstitialAd.Show();
+            adTypeShowing = adType.REWARED;
         }
         else
         {
@@ -241,6 +246,7 @@ public class GoogleAdMobController : Singleton<GoogleAdMobController>
         if (rewardedAd != null)
         {
             rewardedAd.Show();
+            adTypeShowing = adType.REWARED;
             statusText.text = "Showed Rewarded Ad.";
         }
         else
@@ -474,5 +480,10 @@ public class GoogleAdMobController : Singleton<GoogleAdMobController>
                 RequestAndLoadRewardedAd();
             });
         }
+    }
+
+    public void OnClosedAd()
+    {
+        adTypeShowing = adType.NONE;
     }
 }

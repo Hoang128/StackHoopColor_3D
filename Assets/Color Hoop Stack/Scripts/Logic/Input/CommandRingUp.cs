@@ -6,11 +6,15 @@ public class CommandRingUp : Command
 {
     public RingStack ringStackStart;
     public Ring ring;
+    public Ring ringReady = null;
+    public RingStack ringStackReady = null;
 
-    public CommandRingUp(RingStack ringStackStart, Ring ring)
+    public CommandRingUp(RingStack ringStackStart, Ring ring, Ring ringReady, RingStack ringStackReady)
     {
         this.ring = ring;
         this.ringStackStart = ringStackStart;
+        this.ringReady = ringReady;
+        this.ringStackReady = ringStackReady;
 
         if (GameManager.Instance.VibrateEnable)
         {
@@ -21,7 +25,10 @@ public class CommandRingUp : Command
     public override void Execute()
     {
         base.Execute();
+        GameplayMgr.Instance.stateGameplayRingUp.GetRingReady(ringReady, ringStackReady);
         GameplayMgr.Instance.stateMachine.StateChange(GameplayMgr.Instance.stateGameplayRingUp);
+        ringReady = null;
+        ringStackReady = null;
     }
 
     public override void Undo()

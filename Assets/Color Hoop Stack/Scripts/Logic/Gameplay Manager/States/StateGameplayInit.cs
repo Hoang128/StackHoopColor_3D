@@ -39,9 +39,21 @@ public class StateGameplayInit : StateGameplay
 
     public void InitLevel()
     {
-        FileHandler fileHandler = new FileHandler();
-        fileHandler.SaveData();
+        if (gameplayMgr.mapDataStack.Count == 0)
+        {
+            InitLevelDefault();
+        }
+        else
+        {
+            
+        }
 
+        FileHandler fileHandler = new FileHandler();
+        fileHandler.SaveLevelData();
+    }
+
+    public void InitLevelDefault()
+    {
         int ringStackNumber = gameplayMgr.levelListConfig.levelList[gameplayMgr.currentLevel].ringStackList.Count;
         int ringStackPerRow = gameplayMgr.stackRowListConfig.stackRowList[ringStackNumber].maxStackInRow;
         InputMgr.Instance.moveStack.Clear();
@@ -54,7 +66,6 @@ public class StateGameplayInit : StateGameplay
             RingStack newRingStackComp = newRingStack.GetComponent<RingStack>();
             gameplayMgr.ringStackList.Add(newRingStackComp);
             newRingStackComp.number = i;
-            
         }
 
         gameplayMgr.SetUpRingStacksPosition(ringStackPerRow, ringStackNumber);

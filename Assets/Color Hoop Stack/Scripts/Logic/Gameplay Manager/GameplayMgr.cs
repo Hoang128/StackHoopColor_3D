@@ -25,10 +25,9 @@ public class GameplayMgr : Singleton<GameplayMgr>
     [Header("Debug Infos")]
     public int currentLevel = 0;
 
-
     [HideInInspector] public StateGameplay stateGameplayInit;
     [HideInInspector] public StateGameplay stateGameplayIdle;
-    [HideInInspector] public StateGameplay stateGameplayRingUp;
+    [HideInInspector] public StateGameplayRingUp stateGameplayRingUp;
     [HideInInspector] public StateGameplay stateGameplayRingReady;
     [HideInInspector] public StateGameplay stateGameplayRingMove;
     [HideInInspector] public StateGameplay stateGameplayRingDown;
@@ -71,12 +70,15 @@ public class GameplayMgr : Singleton<GameplayMgr>
     {
         GoogleAdMobController.Instance.Init();
         FileHandler fileHandler = new FileHandler();
-        if (!fileHandler.IsSaveDataExist())
+        if (!fileHandler.IsFileExist(fileHandler.settingFilePath))
         {
-            fileHandler.SaveDefaultData();
-            
+            fileHandler.SaveSettingDataDefault();
         }
-        fileHandler.ReadData();
+        fileHandler.ReadSettingData();
+        if (fileHandler.IsFileExist(fileHandler.levelFilePath))
+        {
+            fileHandler.LoadLevelData();
+        }
 
         stateMachine.StateChange(stateGameplayInit);
     }
@@ -328,5 +330,11 @@ public class GameplayMgr : Singleton<GameplayMgr>
     public void PushMapLevel()
     {
         mapDataStack.Push(new MapData(ringStackList, stackCompleteNumber, ringStackList.Count));
+    }
+
+    private void OnApplicationQuit()
+    {
+        FileHandler fileHandler = new FileHandler();
+        fileHandler.SaveLevelData();
     }
 }

@@ -24,7 +24,7 @@ public class SettingPanel : MenuPanel
     public void SaveSetting()
     {
         FileHandler fileHandler = new FileHandler();
-        fileHandler.SaveData();
+        fileHandler.SaveSettingData();
     }
 
     public void DisablePanel()

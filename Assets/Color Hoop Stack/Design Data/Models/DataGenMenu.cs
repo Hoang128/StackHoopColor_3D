@@ -32,10 +32,10 @@ public class DataGenMenu : OdinEditorWindow
         if (!assetExists)
         {
             string inputText;
-            string filePath = "Assets/Resources/Data/level.json";
+            string settingFilePath = "Assets/Resources/Data/level.json";
             JsonTextReader reader;
 
-            inputText = File.ReadAllText(filePath);
+            inputText = File.ReadAllText(settingFilePath);
             reader = new JsonTextReader(new StringReader(inputText));
 
             LevelListConfig levelListConfig = ScriptableObject.CreateInstance<LevelListConfig>();

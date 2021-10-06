@@ -40,7 +40,7 @@ public class InputMgr : Singleton<InputMgr>
             {
                 ringMove = ringStackStart.ringStack.Peek();
                 //command up
-                Command newMove = new CommandRingUp(ringStackStart, ringMove);
+                Command newMove = new CommandRingUp(ringStackStart, ringMove, null, null);
                 newMove.Execute();
                 moveStack.Push(newMove);
                 return;
@@ -62,19 +62,32 @@ public class InputMgr : Singleton<InputMgr>
                 {
                     if (ringStackEnd.ringStack.Peek().ringType != ringMove.ringType)
                     {
-                        //Command down
-                        ringStackEnd = ringStackStart;
-                        Command newMove = new CommandRingDown(ringStackEnd, ringMove);
+                        //Command up
+                        RingStack ringStackReady = ringStackStart;
+                        Ring ringReady = ringStackReady.ringStack.Peek();
+                        ringStackStart = ringStackEnd;
+                        ringMove = ringStackStart.ringStack.Peek();
+
+                        Command newMove = new CommandRingUp(ringStackStart, ringMove, ringReady, ringStackReady);
+                        
                         newMove.Execute();
                         moveStack.Pop();
+                        moveStack.Push(newMove);
+                        return;
                     }
                     else if (ringStackEnd.ringStack.Count == 4)
                     {
-                        //Command down
-                        ringStackEnd = ringStackStart;
-                        Command newMove = new CommandRingDown(ringStackEnd, ringMove);
+                        //Command up
+                        RingStack ringStackReady = ringStackStart;
+                        Ring ringReady = ringStackReady.ringStack.Peek();
+                        ringStackStart = ringStackEnd;
+                        ringMove = ringStackStart.ringStack.Peek();
+
+                        Command newMove = new CommandRingUp(ringStackStart, ringMove, ringReady, ringStackReady);
                         newMove.Execute();
                         moveStack.Pop();
+                        moveStack.Push(newMove);
+                        return;
                     }
                     else if (ringStackEnd.ringStack.Peek().ringType == ringMove.ringType)
                     {
@@ -82,6 +95,7 @@ public class InputMgr : Singleton<InputMgr>
                         Command newMove = new CommandRingMove(ringStackStart, ringStackEnd);
                         moveStack.Push(newMove);
                         newMove.Execute();
+                        return;
                     }
                 }
                 else
@@ -90,6 +104,7 @@ public class InputMgr : Singleton<InputMgr>
                     Command newMove = new CommandRingMove(ringStackStart, ringStackEnd);
                     moveStack.Push(newMove);
                     newMove.Execute();
+                    return;
                 }
             }
 
