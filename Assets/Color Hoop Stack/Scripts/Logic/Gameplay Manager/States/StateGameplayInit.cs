@@ -13,11 +13,17 @@ public class StateGameplayInit : StateGameplay
     public override void OnEnter()
     {
         base.OnEnter();
-
-        InitLevel();
         EventDispatcher.Instance.PostEvent(EventID.ON_FAILED_LOAD_REWARDED_AD);
 
-        gameplayMgr.LoadAds(0.1f);
+        if (!gameplayMgr.firstLoad)
+        {
+            gameplayMgr.LoadAds(0.5f);
+        }
+        else
+        {
+            gameplayMgr.firstLoad = false;
+        }
+        InitLevel();
     }
 
     public override void OnHandleInput()

@@ -261,7 +261,6 @@ public class GameplayMgr : Singleton<GameplayMgr>
         GoogleAdMobController.Instance.RequestAndLoadRewardedAd();
     }
 
-    [Button]
     public void UndoLevel()
     {
         if (mapDataStack.Count > 0)
