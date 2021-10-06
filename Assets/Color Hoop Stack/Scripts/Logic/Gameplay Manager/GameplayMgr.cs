@@ -42,7 +42,7 @@ public class GameplayMgr : Singleton<GameplayMgr>
     [HideInInspector] public bool touched = false;
     [HideInInspector] public bool readyToTouch = false;
     [HideInInspector] public bool firstLoad = true;
-    private Stack<List<RingStack>> ringStackListStack;
+    [HideInInspector] public Stack<MapData> mapDataStack;
     
     public int ringTypeNumber = 0;
     public int stackCompleteNumber = 0;
@@ -50,7 +50,7 @@ public class GameplayMgr : Singleton<GameplayMgr>
     private void Awake()
     {
 
-        ringStackListStack = new Stack<List<RingStack>>();
+        mapDataStack = new Stack<MapData>();
         ringStackList = new List<RingStack>();
 
         stateMachine = new StateMachine();
@@ -257,5 +257,76 @@ public class GameplayMgr : Singleton<GameplayMgr>
 
         GoogleAdMobController.Instance.RequestAndLoadInterstitialAd();
         GoogleAdMobController.Instance.RequestAndLoadRewardedAd();
+    }
+
+    [Button]
+    public void UndoLevel()
+    {
+        if (mapDataStack.Count > 0)
+        {
+            LoadLevelMapData(mapDataStack.Pop());
+            stateMachine.StateChange(stateGameplayIdle);
+        }
+        else
+        {
+            Utils.Common.Log("Level map data stack don't archive any data!");
+        }
+    }
+    
+    public void LoadLevelMapData(MapData mapData)
+    {
+        foreach (RingStack ringStack in ringStackList)
+        {
+            while (ringStack.ringStack.Count > 0)
+            {
+                Ring ring = ringStack.ringStack.Pop();
+                PoolerMgr.Instance.ringPooler.ReturnPooledObject(ring.gameObject);
+            }
+            ringStack.ringStack.Clear();
+            PoolerMgr.Instance.ringStackPooler.ReturnPooledObject(ringStack.gameObject);
+        }
+
+        ringStackList.Clear();
+
+        stackCompleteNumber = mapData.StackCompleteNumber;
+        int ringStackNumber = mapData.RingStackNumber;
+        int ringStackPerRow = stackRowListConfig.stackRowList[ringStackNumber].maxStackInRow;
+
+        for (int i = 0; i < ringStackNumber; i++)
+        {
+            GameObject newRingStack = PoolerMgr.Instance.ringStackPooler.GetNextRingStack();
+            RingStack newRingStackComp = newRingStack.GetComponent<RingStack>();
+            ringStackList.Add(newRingStackComp);
+        }
+
+        SetUpRingStacksPosition(ringStackPerRow, ringStackNumber);
+
+        for (int i = 0; i < ringStackList.Count; i++)
+        {
+            RingStack ringStack = ringStackList[i];
+            ringStack.number = mapData.ListRingStack[i].Number;
+            ringStack.canControl = mapData.ListRingStack[i].CanControl;
+
+            for (int j = mapData.ListRingStack[i].RingList.Count - 1; j >= 0; j--)
+            {
+                if (!(mapData.ListRingStack[i].RingList[j] == RingType.NONE))
+                {
+                    GameObject newRing = PoolerMgr.Instance.ringPooler.GetNextRing(mapData.ListRingStack[i].RingList[j]);
+                    Ring newRingComp = newRing.GetComponent<Ring>();
+                    newRing.transform.position = new Vector3(
+                        ringStack.transform.position.x,
+                        -1.123066f + ringStack.boxCol.size.z / 2 + newRingComp.boxCol.size.z / 2 + newRingComp.boxCol.size.z * (mapData.ListRingStack[i].RingList.Count - 1 - j),
+                        ringStack.transform.position.z
+                        );
+
+                    ringStack.AddNewRing(newRingComp);
+                }
+            }
+        }
+    }
+
+    public void PushMapLevel()
+    {
+        mapDataStack.Push(new MapData(ringStackList, stackCompleteNumber, ringStackList.Count));
     }
 }

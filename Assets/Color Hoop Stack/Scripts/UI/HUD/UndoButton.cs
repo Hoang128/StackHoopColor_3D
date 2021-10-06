@@ -41,9 +41,10 @@ public class UndoButton : MonoBehaviour
 
     public void UndoMove()
     {
-        if (GameplayMgr.Instance.stateMachine.CurrentState == GameplayMgr.Instance.stateGameplayIdle)
+        if ((GameplayMgr.Instance.stateMachine.CurrentState == GameplayMgr.Instance.stateGameplayIdle) ||
+            (GameplayMgr.Instance.stateMachine.CurrentState == GameplayMgr.Instance.stateGameplayRingReady))
         {
-            if (InputMgr.Instance.moveStack.Count > 0)
+            if (GameplayMgr.Instance.mapDataStack.Count > 0)
             {
                 HandleUndoNumber();
 
@@ -58,7 +59,7 @@ public class UndoButton : MonoBehaviour
                 }
 
                 undoNumberText.text = "<sprite index=" + UndoTime + ">";
-                InputMgr.Instance.UndoMove();
+                GameplayMgr.Instance.UndoLevel();
                 SoundsMgr.Instance.PlaySFX(SoundsMgr.Instance.sfxListConfig.sfxConfigDic[SFXType.BUTTON], false);
             }
         }

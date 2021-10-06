@@ -17,7 +17,7 @@ public class StateGameplayInit : StateGameplay
         InitLevel();
         EventDispatcher.Instance.PostEvent(EventID.ON_FAILED_LOAD_REWARDED_AD);
 
-        gameplayMgr.LoadAds(0.5f);
+        gameplayMgr.LoadAds(0.1f);
     }
 
     public override void OnHandleInput()
@@ -62,10 +62,9 @@ public class StateGameplayInit : StateGameplay
         for (int i = 0; i < gameplayMgr.ringStackList.Count; i++)
         {
             RingStackList ringStackList = gameplayMgr.levelListConfig.levelList[gameplayMgr.currentLevel].ringStackList[i];
+            RingStack ringStack = gameplayMgr.ringStackList[i];
             for (int j = 0; j < ringStackList.ringList.Count; j++)
             {
-                RingStack ringStack = gameplayMgr.ringStackList[i];
-
                 if (!(ringStackList.ringList[j] == RingType.NONE))
                 {
                     GameObject newRing = PoolerMgr.Instance.ringPooler.GetNextRing(ringStackList.ringList[j]);
@@ -76,7 +75,7 @@ public class StateGameplayInit : StateGameplay
                         ringStack.transform.position.z
                         );
 
-                    gameplayMgr.ringStackList[i].AddNewRing(newRingComp);
+                    ringStack.AddNewRing(newRingComp);
                 }
             }
         }

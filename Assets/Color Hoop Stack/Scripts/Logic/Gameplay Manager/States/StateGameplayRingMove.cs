@@ -21,6 +21,8 @@ public class StateGameplayRingMove : StateGameplay
     {
         base.OnEnter();
 
+        gameplayMgr.PushMapLevel();
+
         ringStackStart = InputMgr.Instance.ringStackStart;
         ringStackEnd = InputMgr.Instance.ringStackEnd;
 
