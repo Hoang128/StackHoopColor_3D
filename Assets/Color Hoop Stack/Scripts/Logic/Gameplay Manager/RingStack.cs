@@ -60,7 +60,7 @@ public class RingStack : MonoBehaviour, IPointerClickHandler
                 return false;
         }
 
-        if (ringStack.Count < 4)
+        if (ringStack.Count < GameplayMgr.Instance.stackNumberMax)
             return false;
 
         return true;

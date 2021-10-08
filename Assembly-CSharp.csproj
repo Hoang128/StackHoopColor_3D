@@ -81,6 +81,7 @@
     <Compile Include="Assets\Color Hoop Stack\Scripts\Framework\Design Patterns\State Machine\State.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\UI\Panel Menus\MusicButton.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\Framework\Scriptable Object\KVPList.cs" />
+    <Compile Include="Assets\Color Hoop Stack\Scripts\UI\Debug\PreviousLevelDebugButton.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\VFX\VFX.cs" />
     <Compile Include="Assets\DOTween\Modules\DOTweenModuleUnityVersion.cs" />
     <Compile Include="Assets\Color Hoop Stack\Design Data\Models\StackRowListConfig.cs" />
@@ -93,6 +94,7 @@
     <Compile Include="Assets\Color Hoop Stack\Scripts\Sound\SFXPooler.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\Framework\Design Patterns\Object Pooling\ObjectListPooler.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\Logic\Gameplay Manager\States\StateGameplayCompleteLevel.cs" />
+    <Compile Include="Assets\Color Hoop Stack\Scripts\Vibration.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\Logic\RingStackData.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\Logic\Gameplay Manager\States\StateGameplayIdle.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\Logic\Input\CommandRingMove.cs" />
@@ -110,6 +112,7 @@
     <Compile Include="Assets\Color Hoop Stack\Design Data\Save Data\SettingData.cs" />
     <Compile Include="Assets\Color Hoop Stack\Design Data\Models\RingTypeConfig.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\Logic\Input\CommandRingUp.cs" />
+    <Compile Include="Assets\Color Hoop Stack\Scripts\UI\Debug\NextLevelDebugButton.cs" />
     <Compile Include="Assets\Color Hoop Stack\Design Data\Save Data\LevelData.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\Logic\Gameplay Manager\States\StateGameplayAddStack.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\UI\Panel Menus\SettingPanel.cs" />
@@ -132,9 +135,6 @@
     <Compile Include="Assets\Color Hoop Stack\Scripts\Logic\Poolers\RingPooler.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\Logic\Gameplay Manager\RingStack.cs" />
     <Compile Include="Assets\DOTween\Modules\DOTweenModulePhysics.cs" />
-    <Compile Include="Assets\Color Hoop Stack\Scripts\UI\Debug\NextLevelDebugButton.cs" />
-    <Compile Include="Assets\Color Hoop Stack\Scripts\UI\Debug\PreviousLevelDebugButton.cs" />
-    <Compile Include="Assets\Color Hoop Stack\Scripts\Vibration.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

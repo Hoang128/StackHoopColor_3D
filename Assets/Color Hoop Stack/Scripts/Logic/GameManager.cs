@@ -6,7 +6,7 @@ public class GameManager : Singleton<GameManager>
 {
     [Header("Performance Params")]
     public int framerate = 60;
-    public Vector2Int resolution;
+    public float ratio = 1.5f;
 
     [Header("Options")]
     public bool SoundEnable = true;
@@ -16,7 +16,7 @@ public class GameManager : Singleton<GameManager>
     {
 #if !UNITY_EDITOR
         Application.targetFrameRate = framerate;
-        Screen.SetResolution(resolution.x, resolution.y, true);
+        Screen.SetResolution((int)((float)Screen.width / ratio), (int)((float)Screen.height /ratio), true);
         GoogleAdMobController.Instance.Init();
 #endif
     }

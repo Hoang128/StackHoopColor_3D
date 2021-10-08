@@ -584,6 +584,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameMgr
       objectReference: {fileID: 0}
+    - target: {fileID: 2281100117042252683, guid: a0a4c87c4c85ed841bd692ebd015dece, type: 3}
+      propertyPath: ratio
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2281100117042252684, guid: a0a4c87c4c85ed841bd692ebd015dece, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -935,7 +939,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9066804682470610335, guid: 341cf4f08b3b72041b4655573964ce81, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -8.414673
+      value: -8.414551
       objectReference: {fileID: 0}
     - target: {fileID: 9085159508315697861, guid: 341cf4f08b3b72041b4655573964ce81, type: 3}
       propertyPath: m_Pivot.x

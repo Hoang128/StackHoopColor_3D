@@ -28,11 +28,6 @@ public class StateGameplayIdle : StateGameplay
     public override void OnLogicUpdate()
     {
         base.OnLogicUpdate();
-
-        if (gameplayMgr.stackCompleteNumber == gameplayMgr.ringTypeNumber)
-        {
-            stateMachine.StateChange(gameplayMgr.stateGameplayCompleteLevel);
-        }
     }
 
     public override void OnExit()

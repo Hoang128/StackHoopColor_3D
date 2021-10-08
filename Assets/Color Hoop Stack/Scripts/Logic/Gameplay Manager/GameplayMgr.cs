@@ -11,6 +11,7 @@ public class GameplayMgr : Singleton<GameplayMgr>
     public RingTypeConfig ringTypeConfig;
     public LevelListConfig levelListConfig;
     public StackRowListConfig stackRowListConfig;
+    public int stackNumberMax = 4;
 
     [Header("Ring Speed")]
     public float ringUpSpeed = 0.2f;
@@ -18,6 +19,7 @@ public class GameplayMgr : Singleton<GameplayMgr>
     public float ringDownSpeed = 0.2f;
     public float ringJumpTime = 0.05f;
     public float ringJumpPower = 0.05f;
+    public float waitTime = 0.05f;
 
     [Header("Positions")]
     public Vector2 ringStackDistance;
@@ -209,7 +211,7 @@ public class GameplayMgr : Singleton<GameplayMgr>
             0.15f;
         foreach (RingStack ringStack in ringStackList)
         {
-            if (ringStack.ringStack.Count == 4)
+            if (ringStack.ringStack.Count == stackNumberMax)
             {
                 GameObject particleGO = PoolerMgr.Instance.VFXCompletePooler.GetNextPS();
                 particleGO.transform.position = new Vector3(ringStack.transform.position.x, effectYPos, ringStack.transform.position.z);
@@ -366,5 +368,13 @@ public class GameplayMgr : Singleton<GameplayMgr>
     {
         FileHandler fileHandler = new FileHandler();
         fileHandler.SaveLevelData();
+    }
+
+    public void CheckWinState()
+    {
+        if (stackCompleteNumber == ringTypeNumber)
+        {
+            stateMachine.StateChange(stateGameplayCompleteLevel);
+        }
     }
 }

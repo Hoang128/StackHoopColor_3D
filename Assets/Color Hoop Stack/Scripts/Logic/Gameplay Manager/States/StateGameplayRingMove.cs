@@ -5,10 +5,7 @@ using UnityEngine;
 
 public class StateGameplayRingMove : StateGameplay
 {
-    private RingStack ringStackStart;
-    private RingStack ringStackEnd;
     private Ring ringMove;
-    public CommandRingMove command;
 
     public StateGameplayRingMove(GameplayMgr _gameplayMgr, StateMachine _stateMachine) : base(_gameplayMgr, _stateMachine)
     {
@@ -22,12 +19,7 @@ public class StateGameplayRingMove : StateGameplay
 
         gameplayMgr.PushMapLevel();
 
-        ringStackStart = InputMgr.Instance.ringStackStart;
-        ringStackEnd = InputMgr.Instance.ringStackEnd;
-
-        command = (CommandRingMove)InputMgr.Instance.moveStack.Peek();
-
-        MoveRing();
+        MoveRings(InputMgr.Instance.ringStackStart, InputMgr.Instance.ringStackEnd);
     }
 
     public override void OnHandleInput()
@@ -45,120 +37,89 @@ public class StateGameplayRingMove : StateGameplay
         base.OnExit();
     }
 
-    public void MoveRing()
+    public void MoveRings(RingStack ringStackStart, RingStack ringStackEnd)
     {
-        ringMove = ringStackStart.ringStack.Pop();
-        ringMove.transform.SetParent(ringStackEnd.transform);
-        ringStackEnd.ringStack.Push(ringMove);
-        int placeOrder = ringStackEnd.ringStack.Count - 1;
-        Ring nextRing = null;
-        if (ringStackStart.ringStack.Count > 0)
-            nextRing = ringStackStart.ringStack.Peek();
-        float newRingYPos = ringStackStart.transform.position.y +
-            ringStackStart.boxCol.size.y / 2 +
-            ringMove.boxCol.size.z / 2;
-        if (!InputMgr.Instance.isUndoMove)
-        {
-            command.ringMoveNumber++;
-        }
-        else
-        {
-            command.ringMoveNumber--;
-        }
+        ringStackEnd.canControl = false;
+        int blankSlots = gameplayMgr.stackNumberMax - ringStackEnd.ringStack.Count;
+        int ringNumber = 0;
+        RingType moveRingType = InputMgr.Instance.ringMove.ringType;
 
-        if (InputMgr.Instance.isUndoMove)
+        while(ringStackStart.ringStack.Count > 0)
         {
-            if (command.ringMoveNumber == 0)
+            ringMove = ringStackStart.ringStack.Pop();
+            ringMove.transform.SetParent(ringStackEnd.transform);
+            ringStackEnd.ringStack.Push(ringMove);
+
+            float newRingYPos = ringStackStart.transform.position.y +
+                ringStackStart.boxCol.size.y / 2 +
+                ringMove.boxCol.size.z / 2;
+
+            Vector3 newPos = new Vector3(ringStackEnd.transform.position.x, newRingYPos, ringStackEnd.transform.position.z);
+            float distance = Vector3.Distance(ringMove.transform.position, newPos);
+
+            Sequence ringMoveSeq = DOTween.Sequence();
+            ringMoveSeq.PrependInterval(gameplayMgr.waitTime * (ringNumber));
+
+            float newY = -1.123066f + ringStackEnd.boxCol.size.z / 2 + ringMove.boxCol.size.z / 2 + ringMove.boxCol.size.z * (ringStackEnd.ringStack.Count - 1);
+
+            //move up
+            ringMoveSeq.Append(
+                ringMove.transform.DOMoveY(newRingYPos, (newRingYPos - ringMove.transform.position.y) / gameplayMgr.ringUpSpeed)
+                .SetEase(Ease.Linear)
+                );
+
+            //move to another stack
+            ringMoveSeq.Append(
+                ringMove.transform.DOMove(newPos, distance / gameplayMgr.ringMoveSpeed).SetEase(Ease.Linear)
+                );
+
+            //move down
+            ringMoveSeq.Append(
+                ringMove.transform.DOMoveY(newY, (newRingYPos - newY) / gameplayMgr.ringDownSpeed).SetEase(Ease.Linear)
+                );
+            
+
+            //jump
+            ringMoveSeq.Append(
+                ringMove.transform.DOJump(new Vector3(newPos.x, newY, newPos.z), gameplayMgr.ringJumpPower, 2, gameplayMgr.ringJumpTime)
+                );
+
+            ringNumber++;
+            if (blankSlots <= ringNumber)
             {
-                nextRing = null;
+                ringMoveSeq.AppendCallback(() => ActiveControlStack(ringStackEnd));
+                break;
+            }
+            if (ringStackStart.ringStack.Count == 0)
+            {
+                ringMoveSeq.AppendCallback(() => ActiveControlStack(ringStackEnd));
+                break;
+            }
+            if (ringStackStart.ringStack.Peek().ringType != moveRingType)
+            {
+                ringMoveSeq.AppendCallback(() => ActiveControlStack(ringStackEnd));
+                break;
             }
         }
-        else
-        {
-            if (ringStackEnd.ringStack.Count >= 4)
-            {
-                nextRing = null;
-            }
-        }
 
-        if (ringMove.transform.position.y != newRingYPos)
-        {
-            ringMove.transform.DOMoveY(newRingYPos, (newRingYPos - ringMove.transform.position.y) / gameplayMgr.ringUpSpeed)
-                .SetEase(Ease.Linear).OnComplete(() => BringRingToNewStack(ringMove, nextRing, placeOrder));
-        }
-        else
-        {
-            BringRingToNewStack(ringMove, nextRing, placeOrder);
-        }
+        stateMachine.StateChange(gameplayMgr.stateGameplayIdle);
     }
 
-    public void BringRingToNewStack(Ring ringMove, Ring nextRing, int placeOrder)
+    public void ActiveControlStack(RingStack ringStack)
     {
-        Vector3 newPos = new Vector3(ringStackEnd.transform.position.x, ringMove.transform.position.y, ringStackEnd.transform.position.z);
-        float distance = Vector3.Distance(ringMove.transform.position, newPos);
-        SoundsMgr.Instance.PlaySFX(SoundsMgr.Instance.sfxListConfig.sfxConfigDic[SFXType.RING_MOVE], false);
-        ringMove.transform.DOMove(newPos, distance / gameplayMgr.ringMoveSpeed).SetEase(Ease.Linear).OnComplete(()=>DropRingDown(ringMove, nextRing, placeOrder));
-
-        if (!InputMgr.Instance.isUndoMove)
+        if (ringStack.IsStackFullSameColor())
         {
-            if (ringStackStart.ringStack.Count > 0)
-            {
-                if (ringMove.ringType == ringStackStart.ringStack.Peek().ringType)
-                {
-                    if (ringStackEnd.ringStack.Count < 4)
-                    {
-                        MoveRing();
-                    }
-                }
-            }
+            float newRingYPos = ringStack.transform.position.y + ringStack.boxCol.size.y / 2 + ringStack.boxCol.size.z / 2;
+            Vector3 newPos = new Vector3(ringStack.transform.position.x, newRingYPos, ringStack.transform.position.z);
+            SoundsMgr.Instance.PlaySFX(SoundsMgr.Instance.sfxListConfig.sfxConfigDic[SFXType.FULL_STACK], false);
+            GameObject particleGO = PoolerMgr.Instance.VFXCompletePooler.GetNextPS();
+            particleGO.transform.position = newPos;
+            gameplayMgr.stackCompleteNumber++;
+            gameplayMgr.CheckWinState();
         }
         else
         {
-            if (command.ringMoveNumber > 0)
-            {
-                MoveRing();
-            }
-        }
-    }
-
-    public void DropRingDown(Ring ring, Ring nextRing, int placeOrder)
-    {
-        if ((nextRing == null) || (nextRing.ringType != ring.ringType))
-        {
-            InputMgr.Instance.ringMove = ringMove;
-            ActiveCommandRingDown(ringStackEnd, ringMove);
-            return;
-        }
-
-        Utils.Common.Log("place order = " + placeOrder);
-        float newY = -1.123066f + ringStackEnd.boxCol.size.z / 2 + ring.boxCol.size.z / 2 + ring.boxCol.size.z * placeOrder;
-        ring.transform.DOMoveY(newY, (ring.transform.position.y - newY) / gameplayMgr.ringDownSpeed)
-            .SetEase(Ease.Linear).OnComplete(
-                () => ring.transform.DOJump(ring.transform.position, gameplayMgr.ringJumpPower, 2, gameplayMgr.ringJumpTime)
-            );
-        SoundsMgr.Instance.PlaySFX(SoundsMgr.Instance.sfxListConfig.sfxConfigDic[SFXType.RING_DOWN], false);
-    }
-
-    public void ActiveCommandRingDown(RingStack ringStack, Ring ringMove)
-    {
-        if (InputMgr.Instance.isUndoMove)
-        {
-            if (!ringStackStart.canControl)
-            {
-                ringStackStart.canControl = true;
-            }
-            InputMgr.Instance.UndoMove();
-        }
-        else
-        {
-            if (ringStackEnd.IsStackFullSameColor())
-            {
-                GameplayMgr.Instance.stackCompleteNumber++;
-                ringStackEnd.canControl = false;
-            }
-            Command commandRingDown = new CommandRingDown(ringStack, ringMove);
-            commandRingDown.Execute();
-            InputMgr.Instance.moveStack.Push(commandRingDown);
+            ringStack.canControl = true;
         }
     }
 }

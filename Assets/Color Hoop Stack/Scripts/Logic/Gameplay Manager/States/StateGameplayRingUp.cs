@@ -60,14 +60,7 @@ public class StateGameplayRingUp : StateGameplay
 
     public void ChangeToNextState()
     {
-        if (InputMgr.Instance.isUndoMove)
-        {
-            InputMgr.Instance.UndoMove();
-        }
-        else
-        {
-            stateMachine.StateChange(gameplayMgr.stateGameplayRingReady);
-        }
+        stateMachine.StateChange(gameplayMgr.stateGameplayRingReady);
     }
 
     public void GetRingReady(Ring ring, RingStack ringStackReady)
