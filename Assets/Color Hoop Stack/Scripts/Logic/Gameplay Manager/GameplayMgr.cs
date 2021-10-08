@@ -102,6 +102,7 @@ public class GameplayMgr : Singleton<GameplayMgr>
     public void SetUpRingStacksPosition(int ringStackPerRow, int ringStackNumber)
     {
         int ringStackPerColumn = (int)Mathf.Ceil((float)ringStackNumber/(float)ringStackPerRow);
+        int stackLeft = ringStackNumber;
         Vector3 startPos = new Vector3(
             - (float)(ringStackPerRow - 1) / 2 * ringStackDistance.x, 
             0f, 
@@ -111,10 +112,13 @@ public class GameplayMgr : Singleton<GameplayMgr>
 
         for (int i = 0; i < ringStackPerColumn; i++)
         {
+            if (stackLeft < ringStackPerRow)
+                startPos.x = -(float)(stackLeft - 1) / 2 * ringStackDistance.x;
             for (int j = 0; j < ringStackPerRow; j++)
             {
                 ringStackList[ringStackListCurrent].transform.position = startPos + new Vector3(j * ringStackDistance.x, 0f, i * -ringStackDistance.y);
                 ringStackListCurrent++;
+                stackLeft--;
                 if (ringStackListCurrent >= ringStackList.Count)
                     break;
             }
