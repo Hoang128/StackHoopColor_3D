@@ -16,10 +16,7 @@ public class CommandRingUp : Command
         this.ringReady = ringReady;
         this.ringStackReady = ringStackReady;
 
-        if (GameManager.Instance.VibrateEnable)
-        {
-            Handheld.Vibrate();
-        }
+        Vibration.Vibrate(50);
     }
 
     public override void Execute()

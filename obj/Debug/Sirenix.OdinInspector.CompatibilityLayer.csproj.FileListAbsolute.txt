@@ -309,3 +309,7 @@ C:\Users\megam\Documents\Unity\StackHoopColor_3D\obj\Debug\Sirenix.OdinInspector
 C:\Users\megam\Documents\Unity\StackHoopColor_3D\obj\Debug\Sirenix.OdinInspector.CompatibilityLayer.pdb
 C:\Users\megam\Documents\Unity\StackHoopColor_3D\Temp\Bin\Debug\Newtonsoft.Json.dll
 C:\Users\megam\Documents\Unity\StackHoopColor_3D\obj\Debug\Sirenix.OdinInspector.CompatibilityLayer.csproj.AssemblyReference.cache
+D:\Works\StackHoopColor_3D\obj\Debug\Sirenix.OdinInspector.CompatibilityLayer.csproj.AssemblyReference.cache
+D:\Works\StackHoopColor_3D\obj\Debug\Sirenix.OdinInspector.CompatibilityLayer.csproj.CoreCompileInputs.cache
+D:\Works\StackHoopColor_3D\obj\Debug\Sirenix.OdinInspector.CompatibilityLayer.dll
+D:\Works\StackHoopColor_3D\obj\Debug\Sirenix.OdinInspector.CompatibilityLayer.pdb

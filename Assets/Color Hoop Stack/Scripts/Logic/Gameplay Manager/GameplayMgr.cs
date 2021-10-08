@@ -71,25 +71,19 @@ public class GameplayMgr : Singleton<GameplayMgr>
     private void Start()
     {
         GoogleAdMobController.Instance.Init();
-        Utils.Common.Log("goo goo gaa gaa!");
         FileHandler fileHandler = new FileHandler();
-        Utils.Common.Log("gooo gooo gaaa gaaa!");
         if (!fileHandler.IsFileExist(fileHandler.settingFilePath))
         {
             fileHandler.SaveSettingDataDefault();
         }
-        Utils.Common.Log("O_O!");
         fileHandler.ReadSettingData();
-        Utils.Common.Log("X_X");
         if (fileHandler.IsFileExist(fileHandler.levelFilePath))
         {
             fileHandler.LoadLevelData();
-            Utils.Common.Log("OmO");
         }
         else
         {
             fileHandler.SaveLevelDataDefault();
-            Utils.Common.Log("OwO");
         }
        
         stateMachine.StateChange(stateGameplayInit);
@@ -186,6 +180,7 @@ public class GameplayMgr : Singleton<GameplayMgr>
 
 #if UNITY_EDITOR
     [Button]
+#endif
     public void GoNextLevel()
     {
         currentLevel++;
@@ -193,14 +188,15 @@ public class GameplayMgr : Singleton<GameplayMgr>
         stateMachine.StateChange(stateGameplayInit);
     }
 
+#if UNITY_EDITOR
     [Button]
+#endif
     public void GoPreviousLevel()
     {
         currentLevel--;
         stateMachine.StateChange(stateGameplayEnd);
         stateMachine.StateChange(stateGameplayInit);
     }
-#endif
 
     public void TriggerCompleteLevelEffect()
     {

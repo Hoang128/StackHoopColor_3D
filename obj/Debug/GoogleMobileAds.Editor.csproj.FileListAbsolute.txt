@@ -315,3 +315,7 @@ C:\Users\megam\Documents\Unity\StackHoopColor_3D\obj\Debug\GoogleMobileAds.Edito
 C:\Users\megam\Documents\Unity\StackHoopColor_3D\obj\Debug\GoogleMobileAds.Editor.pdb
 C:\Users\megam\Documents\Unity\StackHoopColor_3D\Temp\Bin\Debug\Newtonsoft.Json.dll
 C:\Users\megam\Documents\Unity\StackHoopColor_3D\obj\Debug\GoogleMobileAds.Editor.csproj.AssemblyReference.cache
+D:\Works\StackHoopColor_3D\obj\Debug\GoogleMobileAds.Editor.csproj.AssemblyReference.cache
+D:\Works\StackHoopColor_3D\obj\Debug\GoogleMobileAds.Editor.csproj.CoreCompileInputs.cache
+D:\Works\StackHoopColor_3D\obj\Debug\GoogleMobileAds.Editor.dll
+D:\Works\StackHoopColor_3D\obj\Debug\GoogleMobileAds.Editor.pdb

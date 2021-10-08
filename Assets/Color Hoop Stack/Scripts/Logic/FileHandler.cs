@@ -76,18 +76,14 @@ public class FileHandler
     {
         if (IsFileExist(levelFilePath))
         {
-            Utils.Common.Log("found read path");
             string input = File.ReadAllText(levelFilePath);
-            Utils.Common.Log("read text");
             LevelData levelData = JsonUtility.FromJson<LevelData>(input);
-            Utils.Common.Log("create object");
             GameplayMgr.Instance.currentLevel = levelData.currentLevel;
             levelData.mapDataStack.Reverse();
             GameplayMgr.Instance.mapDataStack = new Stack<MapData>(levelData.mapDataStack);
             GameplayMgr.Instance.ringTypeNumber = levelData.ringTypeNumber;
             if ((!levelData.blankData) && (levelData.mapDataStack.Count > 0))
                 GameplayMgr.Instance.LoadLevelMapData(levelData.mapDataCurrent);
-            Utils.Common.Log("all done");
         }
     }
 }
