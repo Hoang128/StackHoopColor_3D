@@ -13,7 +13,7 @@ public class Ring : MonoBehaviour
     public void ChangeRingType(RingType ringType)
     {
         this.ringType = ringType;
-        meshRenderer.material = GameplayMgr.Instance.ringTypeConfig.configDic[ringType];
+        meshRenderer.material.color = GameplayMgr.Instance.ringColorConfig.configDic[ringType];
     }
 
     public void InitRing(RingType ringType)

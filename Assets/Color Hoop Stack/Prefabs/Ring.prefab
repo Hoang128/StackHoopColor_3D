@@ -127,7 +127,7 @@ PrefabInstance:
     - target: {fileID: -4731837292817999746, guid: 470e9c34dcca4f641a23cb60eb506274, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 4ecf81d48a6751e4c995308b3a139982, type: 2}
+      objectReference: {fileID: 2100000, guid: c89a209e3ca47574b950a8ad01bb3ead, type: 2}
     - target: {fileID: 919132149155446097, guid: 470e9c34dcca4f641a23cb60eb506274, type: 3}
       propertyPath: m_Name
       value: Torus001

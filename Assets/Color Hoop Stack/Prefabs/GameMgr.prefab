@@ -44,6 +44,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   framerate: 60
-  ratio: 2
+  ratio: 1.5
   SoundEnable: 1
   VibrateEnable: 1
+  statusRemoteText: {fileID: 0}
+  test: 0

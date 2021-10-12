@@ -50,11 +50,6 @@ public class GameManager : Singleton<GameManager>
 #endif
     }
 
-    private void Start()
-    {
-        Task.Factory.StartNew(() => FetchDataAsync());
-    }
-
     // Initialize remote config, and set the default values.
     void InitializeFirebase()
     {
@@ -72,6 +67,8 @@ public class GameManager : Singleton<GameManager>
             // [END set_defaults]
             Debug.Log("RemoteConfig configured and ready!");
               isFirebaseInitialized = true;
+
+              Task.Factory.StartNew(() => FetchDataAsync());
           });
 
     }

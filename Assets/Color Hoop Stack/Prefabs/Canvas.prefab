@@ -4559,7 +4559,7 @@ MonoBehaviour:
   restartButton: {fileID: 2878028965468845842}
   moreStackButton: {fileID: 8718856726535482900}
   undoButton: {fileID: 3563087700049151998}
-  winPanelTime: 2.5
+  winPanelTime: 1
 --- !u!1 &9160002948339210481
 GameObject:
   m_ObjectHideFlags: 0

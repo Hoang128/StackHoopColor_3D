@@ -8,7 +8,7 @@ public class GameCanvas : MonoBehaviour
     public RestartButton restartButton;
     public MoreStackButton moreStackButton;
     public UndoButton undoButton;
-    public float winPanelTime = 2.5f;
+    public float winPanelTime = 0.5f;
 
     private Coroutine enableWinMenu = null;
 

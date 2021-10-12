@@ -77,7 +77,8 @@ public class StateGameplayRingMove : StateGameplay
             ringMoveSeq.Append(
                 ringMove.transform.DOMoveY(newY, (newRingYPos - newY) / gameplayMgr.ringDownSpeed).SetEase(Ease.Linear)
                 );
-            
+
+            ringMoveSeq.AppendCallback(() => SoundsMgr.Instance.PlaySFX(SoundsMgr.Instance.sfxListConfig.sfxConfigDic[SFXType.DROP], false));
 
             //jump
             ringMoveSeq.Append(
@@ -109,13 +110,20 @@ public class StateGameplayRingMove : StateGameplay
     {
         if (ringStack.IsStackFullSameColor())
         {
-            float newRingYPos = ringStack.transform.position.y + ringStack.boxCol.size.y / 2 + ringStack.boxCol.size.z / 2;
-            Vector3 newPos = new Vector3(ringStack.transform.position.x, newRingYPos, ringStack.transform.position.z);
-            SoundsMgr.Instance.PlaySFX(SoundsMgr.Instance.sfxListConfig.sfxConfigDic[SFXType.FULL_STACK], false);
-            GameObject particleGO = PoolerMgr.Instance.VFXCompletePooler.GetNextPS();
-            particleGO.transform.position = newPos;
             gameplayMgr.stackCompleteNumber++;
-            gameplayMgr.CheckWinState();
+            if (gameplayMgr.CheckWinState())
+            {
+                gameplayMgr.TriggerCompleteLevelEffect(0f);
+                stateMachine.StateChange(gameplayMgr.stateGameplayCompleteLevel);
+            }
+            else
+            {
+                float newRingYPos = ringStack.transform.position.y + ringStack.boxCol.size.y / 2 + ringStack.boxCol.size.z / 2;
+                Vector3 newPos = new Vector3(ringStack.transform.position.x, newRingYPos, ringStack.transform.position.z);
+                SoundsMgr.Instance.PlaySFX(SoundsMgr.Instance.sfxListConfig.sfxConfigDic[SFXType.FULL_STACK], false);
+                GameObject particleGO = PoolerMgr.Instance.VFXCompletePooler.GetNextPS();
+                particleGO.transform.position = newPos;
+            }
         }
         else
         {

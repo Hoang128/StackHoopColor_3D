@@ -8,7 +8,7 @@ using UnityEngine;
 public class GameplayMgr : Singleton<GameplayMgr>
 {
     [Header("Game Design Datas")]
-    public RingTypeConfig ringTypeConfig;
+    public RingColorConfig ringColorConfig;
     public LevelListConfig levelListConfig;
     public StackRowListConfig stackRowListConfig;
     public int stackNumberMax = 4;
@@ -369,11 +369,13 @@ public class GameplayMgr : Singleton<GameplayMgr>
         fileHandler.SaveLevelData();
     }
 
-    public void CheckWinState()
+    public bool CheckWinState()
     {
         if (stackCompleteNumber == ringTypeNumber)
         {
-            stateMachine.StateChange(stateGameplayCompleteLevel);
+            return true;
         }
+
+        return false;
     }
 }

@@ -25,19 +25,26 @@ public class StateGameplayRingUp : StateGameplay
         float newRingYPos = ringStackStart.transform.position.y + 
             ringStackStart.boxCol.size.y / 2 + 
             ringMove.boxCol.size.z / 2;
-        ringMove.transform.DOMoveY(newRingYPos, (newRingYPos - ringMove.transform.position.y) / gameplayMgr.ringUpSpeed).SetEase(Ease.Linear)
-            .OnComplete(() => ChangeToNextState());
+        Sequence ringUpSeq = DOTween.Sequence();
+        ringUpSeq.Append(ringMove.transform.DOMoveY(newRingYPos, (newRingYPos - ringMove.transform.position.y) / gameplayMgr.ringUpSpeed).SetEase(Ease.Linear));
+
         if (ringReady != null)
         {
+            Sequence ringDownSeq = DOTween.Sequence();
             ringReady.isMoving = false;
             float newY = -1.123066f + ringStackReady.boxCol.size.z / 2 + ringReady.boxCol.size.z / 2 + ringReady.boxCol.size.z * (ringStackReady.ringStack.Count - 1);
-            ringReady.transform.DOMoveY(newY, (ringMove.transform.position.y - newY) / gameplayMgr.ringDownSpeed)
-                .SetEase(Ease.Linear).OnComplete(
-                    () => ringReady.transform.DOJump(ringReady.transform.position, gameplayMgr.ringJumpPower, 2, gameplayMgr.ringJumpTime));
-            SoundsMgr.Instance.PlaySFX(SoundsMgr.Instance.sfxListConfig.sfxConfigDic[SFXType.RING_DOWN], false);
+            ringDownSeq.Append(
+                ringReady.transform.DOMoveY(newY, (ringMove.transform.position.y - newY) / gameplayMgr.ringDownSpeed).SetEase(Ease.Linear)
+                );
+            ringDownSeq.AppendCallback(
+                () => SoundsMgr.Instance.PlaySFX(SoundsMgr.Instance.sfxListConfig.sfxConfigDic[SFXType.DROP], false)
+                );
+            Vector3 newPos = new Vector3(ringReady.transform.position.x, newY, ringReady.transform.position.z);
+            ringDownSeq.Append(
+                ringReady.transform.DOJump(newPos, gameplayMgr.ringJumpPower, 2, gameplayMgr.ringJumpTime)
+                );
         }
-
-        SoundsMgr.Instance.PlaySFX(SoundsMgr.Instance.sfxListConfig.sfxConfigDic[SFXType.RING_UP], false);
+        ChangeToNextState();
     }
 
     public override void OnHandleInput()

@@ -17,7 +17,6 @@ public class WinMenu : MonoBehaviour
         StartCoroutine(ResetFireWorkAfter(rFirework, fireworkTime));
         animator.Play("Win Menu Start Anim");
         backgroundPanel.gameObject.SetActive(true);
-        SoundsMgr.Instance.PlaySFX(SoundsMgr.Instance.sfxListConfig.sfxConfigDic[SFXType.WIN], false);
         SoundsMgr.Instance.PlaySFX(SoundsMgr.Instance.sfxListConfig.sfxConfigDic[SFXType.CHEER], false);
     }
 

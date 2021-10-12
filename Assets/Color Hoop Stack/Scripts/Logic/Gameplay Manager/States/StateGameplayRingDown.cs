@@ -19,13 +19,18 @@ public class StateGameplayRingDown : StateGameplay
         RingStack ringStackEnd = InputMgr.Instance.ringStackEnd;
         Utils.Common.Log("place order = " + (ringStackEnd.ringStack.Count - 1));
         float newY = -1.123066f + ringStackEnd.boxCol.size.z / 2 + ringMove.boxCol.size.z / 2 + ringMove.boxCol.size.z * (ringStackEnd.ringStack.Count - 1);
-        ringMove.transform.DOMoveY(newY, (ringMove.transform.position.y - newY) / gameplayMgr.ringDownSpeed)
-            .SetEase(Ease.Linear).OnComplete(
-                ()=>ringMove.transform.DOJump(ringMove.transform.position, gameplayMgr.ringJumpPower, 2, gameplayMgr.ringJumpTime)
-                .OnComplete(()=>ChangeToNextState()
-            )
-        );
-        SoundsMgr.Instance.PlaySFX(SoundsMgr.Instance.sfxListConfig.sfxConfigDic[SFXType.RING_DOWN], false);
+        Sequence seqRingDown = DOTween.Sequence();
+        seqRingDown.Append(
+            ringMove.transform.DOMoveY(newY, (ringMove.transform.position.y - newY) / gameplayMgr.ringDownSpeed).SetEase(Ease.Linear)
+            );
+        seqRingDown.AppendCallback(
+            () => SoundsMgr.Instance.PlaySFX(SoundsMgr.Instance.sfxListConfig.sfxConfigDic[SFXType.DROP], false)
+            );
+        Vector3 newPos = new Vector3(ringMove.transform.position.x, newY, ringMove.transform.position.z);
+        seqRingDown.Append(
+            ringMove.transform.DOJump(newPos, gameplayMgr.ringJumpPower, 2, gameplayMgr.ringJumpTime)
+            );
+        ChangeToNextState();
     }
 
     private void ChangeToNextState()
