@@ -72,7 +72,6 @@ public class GameplayMgr : Singleton<GameplayMgr>
     // Start is called before the first frame update
     private void Start()
     {
-        GoogleAdMobController.Instance.Init();
         FileHandler fileHandler = new FileHandler();
         if (!fileHandler.IsFileExist(fileHandler.settingFilePath))
         {
