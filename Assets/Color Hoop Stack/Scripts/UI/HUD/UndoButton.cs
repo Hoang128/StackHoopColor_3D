@@ -48,7 +48,7 @@ public class UndoButton : MonoBehaviour
                 if (GameplayMgr.Instance.undoTime == 0)
                 {
                     watchAd.SetActive(false);
-                    GoogleAdMobController.Instance.rewardedTypeAd = GoogleAdMobController.rewardType.UNDO;
+                    GoogleAdMobController.Instance.rewardedTypeAd = GoogleAdMobController.RewardType.UNDO;
                     GoogleAdMobController.Instance.ShowRewardedAd();
                 }
 

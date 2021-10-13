@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>latest</LangVersion>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -53,6 +53,9 @@
     <UnityVersion>2020.3.19f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Assets\Color Hoop Stack\Scripts\UI\Panel Menus\RateButton.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\UI\HUD\RestartButton.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\Framework\Scriptable Object\RTHelper.cs" />
@@ -66,7 +69,7 @@
     <Compile Include="Assets\Color Hoop Stack\Scripts\Logic\Gameplay Manager\States\StateGameplayRingMove.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\Logic\Poolers\PoolerMgr.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\Logic\GameManager.cs" />
-    <Compile Include="Assets\Color Hoop Stack\Scripts\Logic\FileHandler.cs" />
+    <Compile Include="Assets\Color Hoop Stack\Scripts\Logic\File\FileHandler.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\UI\WinMenu.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\Sound\SoundsMgr.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\UI\HUD\UndoButton.cs" />
@@ -78,27 +81,30 @@
     <Compile Include="Assets\Color Hoop Stack\Scripts\Framework\Design Patterns\State Machine\State.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\UI\Panel Menus\MusicButton.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\Framework\Scriptable Object\KVPList.cs" />
+    <Compile Include="Assets\CrystalFramework\Utility\Demos\SafeAreaDemo.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\UI\Debug\PreviousLevelDebugButton.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\VFX\VFX.cs" />
     <Compile Include="Assets\DOTween\Modules\DOTweenModuleUnityVersion.cs" />
+    <Compile Include="Assets\Color Hoop Stack\Design Data\Models\RingColorConfig.cs" />
     <Compile Include="Assets\Color Hoop Stack\Design Data\Models\StackRowListConfig.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\UI\HUD\MoreStackButton.cs" />
     <Compile Include="Assets\Color Hoop Stack\Design Data\Models\SFXListConfig.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\Framework\Design Patterns\State Machine\StateMachine.cs" />
     <Compile Include="Assets\Color Hoop Stack\Design Data\Models\DataGenMenu.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\UI\GameCanvas.cs" />
+    <Compile Include="Assets\Color Hoop Stack\Scripts\UI\SafeAreaFilter.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\Logic\Gameplay Manager\States\StateGameplayRingUp.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\Sound\SFXPooler.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\Framework\Design Patterns\Object Pooling\ObjectListPooler.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\Logic\Gameplay Manager\States\StateGameplayCompleteLevel.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\Vibration.cs" />
-    <Compile Include="Assets\Color Hoop Stack\Scripts\Logic\RingStackData.cs" />
+    <Compile Include="Assets\Color Hoop Stack\Scripts\Logic\File\RingStackData.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\Logic\Gameplay Manager\States\StateGameplayIdle.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\Logic\Input\CommandRingMove.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\UI\Panel Menus\MenuPanel.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\Logic\GameCamera.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\Logic\Ring\RingType.cs" />
-    <Compile Include="Assets\Color Hoop Stack\Scripts\Logic\MapData.cs" />
+    <Compile Include="Assets\Color Hoop Stack\Scripts\Logic\File\MapData.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\Logic\GoogleAdMobController.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\UI\HUD\ShowFPS.cs" />
     <Compile Include="Assets\Color Hoop Stack\Design Data\Models\SFXType.cs" />
@@ -122,6 +128,7 @@
     <Compile Include="Assets\Color Hoop Stack\Scripts\Logic\Gameplay Manager\States\StateGameplayEnd.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\Logic\Input\CommandRingDown.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\Logic\Poolers\PSPooler.cs" />
+    <Compile Include="Assets\CrystalFramework\Utility\SafeArea.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\UI\HUD\MenuButton.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\Sound\SoundSource.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\Logic\Gameplay Manager\States\StateGameplayRingDown.cs" />
@@ -132,7 +139,7 @@
     <Compile Include="Assets\Color Hoop Stack\Scripts\Logic\Poolers\RingPooler.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\Logic\Gameplay Manager\RingStack.cs" />
     <Compile Include="Assets\DOTween\Modules\DOTweenModulePhysics.cs" />
-    <Compile Include="Assets\Color Hoop Stack\Design Data\Models\RingColorConfig.cs" />
+    <Compile Include="Assets\Color Hoop Stack\Scripts\Logic\RemoteConfigMgr.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -176,6 +183,7 @@
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\GoogleMobileAds\GoogleMobileAds.Unity.dll" />
     <None Include="Assets\JsonDotNet\Assemblies\Windows\Newtonsoft.Json.dll" />
+    <None Include="Assets\CrystalFramework\Utility\Demos\SafeAreaDemo.txt" />
     <None Include="Assets\Firebase\Plugins\x86_64\FirebaseCppApp-8_3_0.dll" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\Parse\Plugins\dotNet45\Unity.Compat.dll" />

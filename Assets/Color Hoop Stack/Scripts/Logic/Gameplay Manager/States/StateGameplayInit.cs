@@ -15,14 +15,7 @@ public class StateGameplayInit : StateGameplay
         base.OnEnter();
         EventDispatcher.Instance.PostEvent(EventID.ON_FAILED_LOAD_REWARDED_AD);
 
-        if (!gameplayMgr.firstLoad)
-        {
-            gameplayMgr.LoadAds(0.5f);
-        }
-        else
-        {
-            gameplayMgr.firstLoad = false;
-        }
+        gameplayMgr.LoadAds(0.5f);
         InitLevel();
     }
 

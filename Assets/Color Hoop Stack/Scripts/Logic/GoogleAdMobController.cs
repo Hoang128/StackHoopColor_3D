@@ -9,15 +9,15 @@ using TMPro;
 
 public class GoogleAdMobController : Singleton<GoogleAdMobController>
 {
-    public enum adType {NONE, BANNER, INTERSTITIAL, REWARED};
-    public enum rewardType {NONE, RING_STACK, UNDO};
+    public enum AdType {NONE, BANNER, INTERSTITIAL, REWARED};
+    public enum RewardType {NONE, RING_STACK, UNDO};
 
+    public bool isDoneAdmobInit = false;
     private AppOpenAd appOpenAd;
     private BannerView bannerView;
     private InterstitialAd interstitialAd;
     private RewardedAd rewardedAd;
     private RewardedInterstitialAd rewardedInterstitialAd;
-    private float deltaTime;
     private bool isShowingAppOpenAd;
     public UnityEvent OnAdLoadedEvent;
     public UnityEvent OnAdFailedToLoadEvent;
@@ -25,16 +25,20 @@ public class GoogleAdMobController : Singleton<GoogleAdMobController>
     public UnityEvent OnAdFailedToShowEvent;
     public UnityEvent OnUserEarnedRewardEvent;
     public UnityEvent OnAdClosedEvent;
+    public UnityEvent OnBannerAdLoadEvent;
+    public UnityEvent OnBannerAdFailedToLoadEvent;
+    public UnityEvent OnBannerAdOpenedEvent;
+    public UnityEvent OnBannerAdClosedEvent;
     public bool showFpsMeter = true;
     public TextMeshProUGUI fpsMeter;
     public TextMeshProUGUI statusText;
-    private adType adTypeShowing = adType.NONE;
+    private AdType adTypeShowing = AdType.NONE;
     [HideInInspector] 
-    public rewardType rewardedTypeAd = rewardType.NONE;
+    public RewardType rewardedTypeAd = RewardType.NONE;
 
     #region UNITY MONOBEHAVIOR METHODS
 
-    public void Init()
+    public void Awake()
     {
         MobileAds.SetiOSAppPauseOnBackground(true);
 
@@ -67,27 +71,9 @@ public class GoogleAdMobController : Singleton<GoogleAdMobController>
         MobileAdsEventExecutor.ExecuteInUpdate(() =>
         {
             statusText.text = "Initialization complete";
-            RequestBannerAd();
-            RequestAndLoadInterstitialAd();
-            RequestAndLoadRewardedAd();
+            isDoneAdmobInit = true;
+            EventDispatcher.Instance.PostEvent(EventID.ON_LOAD_SERVICE_DONE);
         });
-    }
-
-    private void Update()
-    {
-        /*
-        if (showFpsMeter)
-        {
-            fpsMeter.gameObject.SetActive(true);
-            deltaTime += (Time.deltaTime - deltaTime) * 0.1f;
-            float fps = 1.0f / deltaTime;
-            fpsMeter.text = string.Format("{0:0.} fps", fps);
-        }
-        else
-        {
-            fpsMeter.gameObject.SetActive(false);
-        }
-        */
     }
 
     #endregion
@@ -136,13 +122,13 @@ public class GoogleAdMobController : Singleton<GoogleAdMobController>
         }
 
         // Create a 320x50 banner at top of the screen
-        bannerView = new BannerView(adUnitId, AdSize.SmartBanner, AdPosition.Bottom);
+        bannerView = new BannerView(adUnitId, AdSize.Banner, AdPosition.Bottom);
 
         // Add Event Handlers
-        bannerView.OnAdLoaded += (sender, args) => OnAdLoadedEvent.Invoke();
-        bannerView.OnAdFailedToLoad += (sender, args) => OnAdFailedToLoadEvent.Invoke();
-        bannerView.OnAdOpening += (sender, args) => OnAdOpeningEvent.Invoke();
-        bannerView.OnAdClosed += (sender, args) => OnAdClosedEvent.Invoke();
+        bannerView.OnAdLoaded += (sender, args) => OnBannerAdLoadEvent.Invoke();
+        bannerView.OnAdFailedToLoad += (sender, args) => OnBannerAdFailedToLoadEvent.Invoke();
+        bannerView.OnAdOpening += (sender, args) => OnBannerAdOpenedEvent.Invoke();
+        bannerView.OnAdClosed += (sender, args) => OnBannerAdClosedEvent.Invoke();
 
         // Load a banner ad
         bannerView.LoadAd(CreateAdRequest());
@@ -196,7 +182,7 @@ public class GoogleAdMobController : Singleton<GoogleAdMobController>
         if (interstitialAd.IsLoaded())
         {
             interstitialAd.Show();
-            adTypeShowing = adType.REWARED;
+            adTypeShowing = AdType.REWARED;
         }
         else
         {
@@ -249,7 +235,7 @@ public class GoogleAdMobController : Singleton<GoogleAdMobController>
         if (rewardedAd != null)
         {
             rewardedAd.Show();
-            adTypeShowing = adType.REWARED;
+            adTypeShowing = AdType.REWARED;
             statusText.text = "Showed Rewarded Ad.";
         }
         else
@@ -463,6 +449,22 @@ public class GoogleAdMobController : Singleton<GoogleAdMobController>
                 RequestAndLoadRewardedAd();
             });
         }
+    }
+
+    public void EnableBannerAdWarpper()
+    {
+        MobileAdsEventExecutor.ExecuteInUpdate(() =>
+        {
+            EventDispatcher.Instance.PostEvent(EventID.ON_LOADED_BANNER_AD);
+        });
+    }
+
+    public void DisableBannerAdWarpper()
+    {
+        MobileAdsEventExecutor.ExecuteInUpdate(() =>
+        {
+            EventDispatcher.Instance.PostEvent(EventID.ON_DESTROYED_BANNER_AD);
+        });
     }
 
     public void EnableAdRewaredButton()

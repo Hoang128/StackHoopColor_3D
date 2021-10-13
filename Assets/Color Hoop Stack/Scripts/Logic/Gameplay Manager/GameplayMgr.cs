@@ -69,8 +69,7 @@ public class GameplayMgr : Singleton<GameplayMgr>
         stateGameplayAddStack = new StateGameplayAddStack(this, stateMachine);
     }
 
-    // Start is called before the first frame update
-    private void Start()
+    public void Init()
     {
         FileHandler fileHandler = new FileHandler();
         if (!fileHandler.IsFileExist(fileHandler.settingFilePath))
@@ -90,7 +89,6 @@ public class GameplayMgr : Singleton<GameplayMgr>
         stateMachine.StateChange(stateGameplayInit);
     }
 
-    // Update is called once per frame
     private void Update()
     {
         stateMachine.StateHandleInput(); 
@@ -153,9 +151,9 @@ public class GameplayMgr : Singleton<GameplayMgr>
 
     public void EarnReward()
     {
-        if (GoogleAdMobController.Instance.rewardedTypeAd == GoogleAdMobController.rewardType.RING_STACK)
+        if (GoogleAdMobController.Instance.rewardedTypeAd == GoogleAdMobController.RewardType.RING_STACK)
             stateMachine.StateChange(stateGameplayAddStack);
-        else if (GoogleAdMobController.Instance.rewardedTypeAd == GoogleAdMobController.rewardType.UNDO)
+        else if (GoogleAdMobController.Instance.rewardedTypeAd == GoogleAdMobController.RewardType.UNDO)
         {
             UndoLevel();
             undoTime--;
@@ -275,7 +273,7 @@ public class GameplayMgr : Singleton<GameplayMgr>
     public IEnumerator LoadAdsAfter(float seconds)
     {
         yield return new WaitForSeconds(seconds);
-
+        GoogleAdMobController.Instance.RequestBannerAd();
         GoogleAdMobController.Instance.RequestAndLoadInterstitialAd();
         GoogleAdMobController.Instance.RequestAndLoadRewardedAd();
     }

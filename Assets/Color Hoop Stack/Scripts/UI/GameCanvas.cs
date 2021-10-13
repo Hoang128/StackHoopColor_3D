@@ -8,6 +8,8 @@ public class GameCanvas : MonoBehaviour
     public RestartButton restartButton;
     public MoreStackButton moreStackButton;
     public UndoButton undoButton;
+    public GameObject bannerAdWarpper;
+    public GameObject loadingScreen;
     public float winPanelTime = 0.5f;
 
     private Coroutine enableWinMenu = null;
@@ -17,6 +19,9 @@ public class GameCanvas : MonoBehaviour
     {
         EventDispatcher.Instance.RegisterListener(EventID.ON_COMPLETE_LEVEL, param => CompleteLevelUI());
         EventDispatcher.Instance.RegisterListener(EventID.ON_INIT_LEVEL, param => InitLevelUI());
+        EventDispatcher.Instance.RegisterListener(EventID.ON_LOAD_SERVICE_DONE, param => CheckServicesLoad());
+        EventDispatcher.Instance.RegisterListener(EventID.ON_LOADED_BANNER_AD, param => ShowBannerWarpper());
+        EventDispatcher.Instance.RegisterListener(EventID.ON_DESTROYED_BANNER_AD, param => HideBannerWarpper());
     }
 
     public void InitLevelUI()
@@ -36,5 +41,24 @@ public class GameCanvas : MonoBehaviour
     {
         yield return new WaitForSeconds(seconds);
         winMenu.gameObject.SetActive(true);
+    }
+
+    public void ShowBannerWarpper()
+    {
+        bannerAdWarpper.SetActive(true);
+    }
+
+    public void HideBannerWarpper()
+    {
+        bannerAdWarpper.SetActive(false);
+    }
+
+    private void CheckServicesLoad()
+    {
+        if (RemoteConfigMgr.Instance.isDoneInitRemoteConfig &&
+            GoogleAdMobController.Instance.isDoneAdmobInit)
+        {
+            loadingScreen.SetActive(false);
+        }
     }
 }

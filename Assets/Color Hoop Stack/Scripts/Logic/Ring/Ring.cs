@@ -20,8 +20,4 @@ public class Ring : MonoBehaviour
     {
         ChangeRingType(ringType);
     }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-    }
 }
