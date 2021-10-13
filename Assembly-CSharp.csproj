@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>8.0</LangVersion>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -53,9 +53,6 @@
     <UnityVersion>2020.3.19f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Assets\Color Hoop Stack\Scripts\UI\Panel Menus\RateButton.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\UI\HUD\RestartButton.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\Framework\Scriptable Object\RTHelper.cs" />
@@ -81,7 +78,6 @@
     <Compile Include="Assets\Color Hoop Stack\Scripts\Framework\Design Patterns\State Machine\State.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\UI\Panel Menus\MusicButton.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\Framework\Scriptable Object\KVPList.cs" />
-    <Compile Include="Assets\CrystalFramework\Utility\Demos\SafeAreaDemo.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\UI\Debug\PreviousLevelDebugButton.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\VFX\VFX.cs" />
     <Compile Include="Assets\DOTween\Modules\DOTweenModuleUnityVersion.cs" />
@@ -128,7 +124,6 @@
     <Compile Include="Assets\Color Hoop Stack\Scripts\Logic\Gameplay Manager\States\StateGameplayEnd.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\Logic\Input\CommandRingDown.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\Logic\Poolers\PSPooler.cs" />
-    <Compile Include="Assets\CrystalFramework\Utility\SafeArea.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\UI\HUD\MenuButton.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\Sound\SoundSource.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\Logic\Gameplay Manager\States\StateGameplayRingDown.cs" />
@@ -183,7 +178,6 @@
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\GoogleMobileAds\GoogleMobileAds.Unity.dll" />
     <None Include="Assets\JsonDotNet\Assemblies\Windows\Newtonsoft.Json.dll" />
-    <None Include="Assets\CrystalFramework\Utility\Demos\SafeAreaDemo.txt" />
     <None Include="Assets\Firebase\Plugins\x86_64\FirebaseCppApp-8_3_0.dll" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\Parse\Plugins\dotNet45\Unity.Compat.dll" />
