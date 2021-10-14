@@ -12,7 +12,7 @@ public class DataGenMenu : OdinEditorWindow
 {
     private int stackNumberMax = 4;
 
-    [MenuItem("Tools/Color Stack Hoop/DataGenerator")]
+    [MenuItem("Tools/Color Stack Hoop/Data Generator")]
     private static void ShowWindow()
     {
         Init();
@@ -27,7 +27,7 @@ public class DataGenMenu : OdinEditorWindow
     [Button]
     private void GenerateLevelsData()
     {
-        string levelDataPath = "Assets/Color Hoop Stack/Scripts/Design Data/LevelListConfig.asset";
+        string levelDataPath = "Assets/Color Hoop Stack/Design Data/LevelListConfig.asset";
         bool assetExists = AssetDatabase.GetMainAssetTypeAtPath(levelDataPath) != null;
         if (!assetExists)
         {
@@ -100,7 +100,7 @@ public class DataGenMenu : OdinEditorWindow
                 }    
             }
 
-            GenerateRandomColor(levelListConfig);
+            //GenerateRandomColor(levelListConfig);
 
             AssetDatabase.CreateAsset(levelListConfig, levelDataPath);
             AssetDatabase.SaveAssets();
@@ -114,7 +114,7 @@ public class DataGenMenu : OdinEditorWindow
     [Button]
     private void ClearLevelsData()
     {
-        string levelDataPath = "Assets/Color Hoop Stack/Scripts/Design Data/LevelListConfig.asset";
+        string levelDataPath = "Assets/Color Hoop Stack/Design Data/LevelListConfig.asset";
         bool assetExists = AssetDatabase.GetMainAssetTypeAtPath(levelDataPath) != null;
         if (assetExists)
         {
@@ -135,6 +135,7 @@ public class DataGenMenu : OdinEditorWindow
     {
         List<RingType> ringTypeAvailableList = new List<RingType>();
 
+        ringTypeAvailableList.Add(RingType.RANDOM_1);
         ringTypeAvailableList.Add(RingType.GREEN_LIME);
         ringTypeAvailableList.Add(RingType.GREEN_GRASS);
         ringTypeAvailableList.Add(RingType.BLUE_SKY);
@@ -145,6 +146,7 @@ public class DataGenMenu : OdinEditorWindow
         ringTypeAvailableList.Add(RingType.RED);
         ringTypeAvailableList.Add(RingType.BLACK);
         ringTypeAvailableList.Add(RingType.ORANGE);
+        ringTypeAvailableList.Add(RingType.RANDOM_2);
 
         List<RingType> ringTypeRandomList = new List<RingType>();
 

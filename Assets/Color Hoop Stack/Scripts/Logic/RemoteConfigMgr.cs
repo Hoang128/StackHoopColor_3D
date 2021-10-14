@@ -85,7 +85,7 @@ public class RemoteConfigMgr : Singleton<RemoteConfigMgr>
                 Firebase.RemoteConfig.FirebaseRemoteConfig.DefaultInstance.ActivateAsync()
                 .ContinueWithOnMainThread(task => {
                     test = Firebase.RemoteConfig.FirebaseRemoteConfig.DefaultInstance.GetValue("config_test_bool").BooleanValue;
-                    statusRemoteText.text = "Successfull test = " + test.ToString();
+                    statusRemoteText.text = "remote config loaded = " + test.ToString();
                     Debug.Log(String.Format("Remote data loaded and ready (last fetch time {0}).",
                                    info.FetchTime));
                 });

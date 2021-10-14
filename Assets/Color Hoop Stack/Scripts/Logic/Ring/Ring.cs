@@ -10,6 +10,11 @@ public class Ring : MonoBehaviour
     public BoxCollider boxCol;
     [HideInInspector] public bool isMoving = false;
 
+    public void Awake()
+    {
+        transform.rotation = Quaternion.Euler(90, 0, 0);
+    }
+
     public void ChangeRingType(RingType ringType)
     {
         this.ringType = ringType;

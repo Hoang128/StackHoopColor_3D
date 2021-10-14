@@ -10,13 +10,12 @@ public class RingStack : MonoBehaviour, IPointerClickHandler
 {
     [HideInInspector] public Stack<Ring> ringStack;
     [HideInInspector] public bool canControl = true;
-    [HideInInspector] public BoxCollider boxCol;
+    public BoxCollider boxCol;
     [HideInInspector] public int number;
 
     private void Awake()
     {
         ringStack = new Stack<Ring>();
-        boxCol = GetComponentInChildren<BoxCollider>();
     }
 
     private void OnEnable()

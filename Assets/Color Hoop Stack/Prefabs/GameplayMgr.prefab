@@ -43,7 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75c1320ad0709d5409da5bca5c43a924, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ringTypeConfig: {fileID: 11400000, guid: bd3867b16e4c6ce4ca37161cc72282f8, type: 2}
   ringColorConfig: {fileID: 11400000, guid: 46cf19ea380c71b49bbb295408c94471, type: 2}
   levelListConfig: {fileID: 11400000, guid: 2944caf5a213c3e46973245f509e7e6f, type: 2}
   stackRowListConfig: {fileID: 11400000, guid: 25d3b10827b0bf943b35e9a6d29af7a6, type: 2}

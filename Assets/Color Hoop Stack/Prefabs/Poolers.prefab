@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectToPool: {fileID: 599487973997858235, guid: fb18c7e174b6f9e43a258e6c450ba6ba, type: 3}
-  initializeSize: 0
+  initializeSize: 10
 --- !u!1 &7537545820748221154
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,7 +94,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ringPooler: {fileID: 7537545821617660149}
   ringStackPooler: {fileID: 7537545821154565552}
-  VFXWinPooler: {fileID: 0}
   VFXCompletePooler: {fileID: 5567775339646853003}
 --- !u!1 &7537545821154565558
 GameObject:
