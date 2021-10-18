@@ -21,37 +21,37 @@ MonoBehaviour:
     cameraSize: 5
   - maxStackInRow: 3
     cameraSize: 5
+  - maxStackInRow: 2
+    cameraSize: 5
+  - maxStackInRow: 3
+    cameraSize: 5
+  - maxStackInRow: 3
+    cameraSize: 5
   - maxStackInRow: 4
-    cameraSize: 5.5
-  - maxStackInRow: 5
-    cameraSize: 6.5
-  - maxStackInRow: 5
-    cameraSize: 6.5
-  - maxStackInRow: 5
-    cameraSize: 6.5
-  - maxStackInRow: 5
-    cameraSize: 6.5
-  - maxStackInRow: 5
-    cameraSize: 6.5
-  - maxStackInRow: 5
-    cameraSize: 6.5
+    cameraSize: 5
+  - maxStackInRow: 3
+    cameraSize: 5
+  - maxStackInRow: 3
+    cameraSize: 5
   - maxStackInRow: 4
-    cameraSize: 5.5
+    cameraSize: 5
   - maxStackInRow: 4
-    cameraSize: 5.5
+    cameraSize: 5
+  - maxStackInRow: 4
+    cameraSize: 5
   - maxStackInRow: 5
-    cameraSize: 6.5
+    cameraSize: 6
   - maxStackInRow: 5
-    cameraSize: 6.5
+    cameraSize: 6
   - maxStackInRow: 5
+    cameraSize: 6
+  - maxStackInRow: 6
     cameraSize: 6.5
   - maxStackInRow: 6
-    cameraSize: 8
+    cameraSize: 6.5
   - maxStackInRow: 6
-    cameraSize: 8
-  - maxStackInRow: 6
-    cameraSize: 8
-  - maxStackInRow: 5
     cameraSize: 6.5
   - maxStackInRow: 5
-    cameraSize: 6.5
+    cameraSize: 6
+  - maxStackInRow: 5
+    cameraSize: 6

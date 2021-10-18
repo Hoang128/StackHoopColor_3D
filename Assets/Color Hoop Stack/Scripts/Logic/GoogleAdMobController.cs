@@ -12,7 +12,9 @@ public class GoogleAdMobController : Singleton<GoogleAdMobController>
     public enum AdType {NONE, BANNER, INTERSTITIAL, REWARED};
     public enum RewardType {NONE, RING_STACK, UNDO};
 
-    public bool isDoneAdmobInit = false;
+    public bool isEnabled = true;
+
+    [HideInInspector] public bool isDoneAdmobInit = false;
     private AppOpenAd appOpenAd;
     private BannerView bannerView;
     private InterstitialAd interstitialAd;
@@ -102,36 +104,39 @@ public class GoogleAdMobController : Singleton<GoogleAdMobController>
 
     public void RequestBannerAd()
     {
-        statusText.text = "Requesting Banner Ad.";
+        if (isEnabled)
+        {
+            statusText.text = "Requesting Banner Ad.";
 
-        // These ad units are configured to always serve test ads.
+            // These ad units are configured to always serve test ads.
 #if UNITY_EDITOR
-        string adUnitId = "unused";
+            string adUnitId = "unused";
 #elif UNITY_ANDROID
-        string adUnitId = "ca-app-pub-3940256099942544/6300978111";
+            string adUnitId = "ca-app-pub-3940256099942544/6300978111";
 #elif UNITY_IPHONE
-        string adUnitId = "ca-app-pub-3940256099942544/2934735716";
+            string adUnitId = "ca-app-pub-3940256099942544/2934735716";
 #else
-        string adUnitId = "unexpected_platform";
+            string adUnitId = "unexpected_platform";
 #endif
 
-        // Clean up banner before reusing
-        if (bannerView != null)
-        {
-            bannerView.Destroy();
+            // Clean up banner before reusing
+            if (bannerView != null)
+            {
+                bannerView.Destroy();
+            }
+
+            // Create a 320x50 banner at top of the screen
+            bannerView = new BannerView(adUnitId, AdSize.Banner, AdPosition.Bottom);
+
+            // Add Event Handlers
+            bannerView.OnAdLoaded += (sender, args) => OnBannerAdLoadEvent.Invoke();
+            bannerView.OnAdFailedToLoad += (sender, args) => OnBannerAdFailedToLoadEvent.Invoke();
+            bannerView.OnAdOpening += (sender, args) => OnBannerAdOpenedEvent.Invoke();
+            bannerView.OnAdClosed += (sender, args) => OnBannerAdClosedEvent.Invoke();
+
+            // Load a banner ad
+            bannerView.LoadAd(CreateAdRequest());
         }
-
-        // Create a 320x50 banner at top of the screen
-        bannerView = new BannerView(adUnitId, AdSize.Banner, AdPosition.Bottom);
-
-        // Add Event Handlers
-        bannerView.OnAdLoaded += (sender, args) => OnBannerAdLoadEvent.Invoke();
-        bannerView.OnAdFailedToLoad += (sender, args) => OnBannerAdFailedToLoadEvent.Invoke();
-        bannerView.OnAdOpening += (sender, args) => OnBannerAdOpenedEvent.Invoke();
-        bannerView.OnAdClosed += (sender, args) => OnBannerAdClosedEvent.Invoke();
-
-        // Load a banner ad
-        bannerView.LoadAd(CreateAdRequest());
     }
 
     public void DestroyBannerAd()
@@ -179,14 +184,17 @@ public class GoogleAdMobController : Singleton<GoogleAdMobController>
 
     public void ShowInterstitialAd()
     {
-        if (interstitialAd.IsLoaded())
+        if (isEnabled)
         {
-            interstitialAd.Show();
-            adTypeShowing = AdType.REWARED;
-        }
-        else
-        {
-            statusText.text = "Interstitial ad is not ready yet";
+            if (interstitialAd.IsLoaded())
+            {
+                interstitialAd.Show();
+                adTypeShowing = AdType.REWARED;
+            }
+            else
+            {
+                statusText.text = "Interstitial ad is not ready yet";
+            }
         }
     }
 
@@ -232,15 +240,18 @@ public class GoogleAdMobController : Singleton<GoogleAdMobController>
 
     public void ShowRewardedAd()
     {
-        if (rewardedAd != null)
+        if (isEnabled)
         {
-            rewardedAd.Show();
-            adTypeShowing = AdType.REWARED;
-            statusText.text = "Showed Rewarded Ad.";
-        }
-        else
-        {
-            statusText.text = "Rewarded ad is not ready yet.";
+            if (rewardedAd != null)
+            {
+                rewardedAd.Show();
+                adTypeShowing = AdType.REWARED;
+                statusText.text = "Showed Rewarded Ad.";
+            }
+            else
+            {
+                statusText.text = "Rewarded ad is not ready yet.";
+            }
         }
     }
 
@@ -299,17 +310,20 @@ public class GoogleAdMobController : Singleton<GoogleAdMobController>
 
     public void ShowRewardedInterstitialAd()
     {
-        if (rewardedInterstitialAd != null)
+        if (isEnabled)
         {
-            rewardedInterstitialAd.Show((reward) => {
-                MobileAdsEventExecutor.ExecuteInUpdate(() => {
-                    statusText.text = "User Rewarded: " + reward.Amount;
+            if (rewardedInterstitialAd != null)
+            {
+                rewardedInterstitialAd.Show((reward) => {
+                    MobileAdsEventExecutor.ExecuteInUpdate(() => {
+                        statusText.text = "User Rewarded: " + reward.Amount;
+                    });
                 });
-            });
-        }
-        else
-        {
-            statusText.text = "Rewarded ad is not ready yet.";
+            }
+            else
+            {
+                statusText.text = "Rewarded ad is not ready yet.";
+            }
         }
     }
 
