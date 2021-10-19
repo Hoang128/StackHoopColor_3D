@@ -3,7 +3,7 @@
     "m_SelectedPackage": {
         "deviceId": "420055dac6e98471",
         "name": "com.DefaultCompany.StackHoopColor_3D",
-        "processId": 29769,
+        "processId": 2412,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -30,12 +30,24 @@
             "deviceId": "420055dac6e98471",
             "name": "com.DefaultCompany.StackHoopColor_3D",
             "processId": 13566,
-            "exited": false
+            "exited": true
         },
         {
             "deviceId": "420055dac6e98471",
             "name": "com.DefaultCompany.StackHoopColor_3D",
             "processId": 29769,
+            "exited": true
+        },
+        {
+            "deviceId": "420055dac6e98471",
+            "name": "com.sec.android.app.launcher",
+            "processId": 2857,
+            "exited": false
+        },
+        {
+            "deviceId": "420055dac6e98471",
+            "name": "com.DefaultCompany.StackHoopColor_3D",
+            "processId": 2412,
             "exited": false
         }
     ],
