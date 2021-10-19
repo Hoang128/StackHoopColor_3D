@@ -22,7 +22,14 @@ public class GameManager : Singleton<GameManager>
         EventDispatcher.Instance.RegisterListener(EventID.ON_LOAD_SERVICE_DONE, param => CheckServicesLoad());
 #if !UNITY_EDITOR
         Application.targetFrameRate = framerate;
-        Screen.SetResolution((int)((float)Screen.width / ratio), (int)((float)Screen.height /ratio), true);
+        if (Screen.width <= 1080)
+        {
+            Screen.SetResolution((int)((float)Screen.width * 3/4), (int)((float)Screen.height * 3/4), true);
+        }
+        else
+        {
+            Screen.SetResolution((int)((float)Screen.width / ratio), (int)((float)Screen.height / ratio), true);
+        }
 #endif
     }
 

@@ -250,10 +250,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 46393910}
     - target: {fileID: 3238215952888773532, guid: e4caa0d3b36ed384f9758d30573bc4e0, type: 3}
-      propertyPath: isEnabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3238215952888773532, guid: e4caa0d3b36ed384f9758d30573bc4e0, type: 3}
       propertyPath: statusText
       value: 
       objectReference: {fileID: 2085302213}

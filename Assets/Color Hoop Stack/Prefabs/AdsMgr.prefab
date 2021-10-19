@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 157eb8e56800dff4fafcfb3c012014de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isEnabled: 1
   isDoneAdmobInit: 0
   OnAdLoadedEvent:
     m_PersistentCalls:
