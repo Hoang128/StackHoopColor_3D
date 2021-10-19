@@ -453,7 +453,7 @@ PrefabInstance:
     - target: {fileID: 3590762640446243167, guid: fbefc84698ac15e4282062433a07aec0, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: febccac0031b70e4a9b1515d1016e462, type: 2}
+      objectReference: {fileID: 2100000, guid: 1619d4c35ee9b9a439a736f6fafdc18f, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fbefc84698ac15e4282062433a07aec0, type: 3}
 --- !u!114 &2085302213 stripped
@@ -608,6 +608,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1754786031112586540, guid: 6e3a40fade0f1d04aae0a9e7f5c11bcc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1754786031112586540, guid: 6e3a40fade0f1d04aae0a9e7f5c11bcc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 23.71
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208718722046094970, guid: 6e3a40fade0f1d04aae0a9e7f5c11bcc, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5816936458490315248, guid: 6e3a40fade0f1d04aae0a9e7f5c11bcc, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -651,14 +663,6 @@ PrefabInstance:
     - target: {fileID: 5816936458490315248, guid: 6e3a40fade0f1d04aae0a9e7f5c11bcc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5816936458490315250, guid: 6e3a40fade0f1d04aae0a9e7f5c11bcc, type: 3}
-      propertyPath: defaultCamSizeRatio.x
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 5816936458490315250, guid: 6e3a40fade0f1d04aae0a9e7f5c11bcc, type: 3}
-      propertyPath: defaultCamSizeRatio.y
-      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 5816936458490315261, guid: 6e3a40fade0f1d04aae0a9e7f5c11bcc, type: 3}
       propertyPath: m_Name

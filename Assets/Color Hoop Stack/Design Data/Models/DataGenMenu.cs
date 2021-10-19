@@ -10,8 +10,6 @@ using Sirenix.OdinInspector.Editor;
 
 public class DataGenMenu : OdinEditorWindow
 {
-    private int stackNumberMax = 4;
-
     [MenuItem("Tools/Color Stack Hoop/Data Generator")]
     private static void ShowWindow()
     {
@@ -20,7 +18,6 @@ public class DataGenMenu : OdinEditorWindow
 
     private static void Init()
     {
-        DataGenMenu dataGenMenu = new DataGenMenu();
         GetWindow<DataGenMenu>(false, "Data Generator", true);
     }
 
