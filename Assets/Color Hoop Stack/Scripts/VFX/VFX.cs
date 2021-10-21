@@ -6,6 +6,6 @@ public class VFX : MonoBehaviour
 {
     public void OnParticleSystemStopped()
     {
-        gameObject.SetActive(false);
+        VFXMgr.Instance.DestroyVFX(this.gameObject);
     }
 }

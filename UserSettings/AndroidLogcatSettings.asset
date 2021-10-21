@@ -3,7 +3,7 @@
     "m_SelectedPackage": {
         "deviceId": "420055dac6e98471",
         "name": "com.DefaultCompany.StackHoopColor_3D",
-        "processId": 2412,
+        "processId": 6929,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -48,6 +48,18 @@
             "deviceId": "420055dac6e98471",
             "name": "com.DefaultCompany.StackHoopColor_3D",
             "processId": 2412,
+            "exited": false
+        },
+        {
+            "deviceId": "420055dac6e98471",
+            "name": "com.DefaultCompany.StackHoopColor_3D",
+            "processId": 5787,
+            "exited": false
+        },
+        {
+            "deviceId": "420055dac6e98471",
+            "name": "com.DefaultCompany.StackHoopColor_3D",
+            "processId": 6929,
             "exited": false
         }
     ],
