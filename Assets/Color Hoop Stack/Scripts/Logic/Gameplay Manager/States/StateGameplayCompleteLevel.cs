@@ -18,6 +18,8 @@ public class StateGameplayCompleteLevel : StateGameplay
         EventDispatcher.Instance.PostEvent(EventID.ON_DISABLED_TUTORIAL);
         gameplayMgr.currentLevel++;
         gameplayMgr.mapDataStack.Clear();
+        FileHandler fileHandler = new FileHandler();
+        fileHandler.SaveLevelData();
     }
 
     public override void OnHandleInput()
