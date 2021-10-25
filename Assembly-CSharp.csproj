@@ -140,6 +140,7 @@
     <Compile Include="Assets\Color Hoop Stack\Scripts\UI\Tutorials\CorrectPooler.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\UI\Tutorials\Corrector.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\UI\Tutorials\TutorialCorrect.cs" />
+    <Compile Include="Assets\Color Hoop Stack\Scripts\UI\CameraBackground.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
