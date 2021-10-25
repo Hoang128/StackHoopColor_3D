@@ -26,6 +26,15 @@ public class CommandRingUp : Command
         GameplayMgr.Instance.stateMachine.StateChange(GameplayMgr.Instance.stateGameplayRingUp);
         ringReady = null;
         ringStackReady = null;
+
+        if (GameplayMgr.Instance.currentLevel == 0)
+        {
+            EventDispatcher.Instance.PostEvent(EventID.ON_MOVE_TUTORIAL_CURSOR);
+        }
+        else if (GameplayMgr.Instance.currentLevel == 1)
+        {
+            EventDispatcher.Instance.PostEvent(EventID.ON_ENABLED_CORRECTOR, ringStackStart);
+        }
     }
 
     public override void Undo()

@@ -15,6 +15,10 @@ public class StateGameplayRingReady : StateGameplay
         base.OnEnter();
 
         gameplayMgr.readyToTouch = true;
+        if (gameplayMgr.currentLevel == 0)
+        {
+            gameplayMgr.ringStackList[1].canControl = true;
+        }
     }
 
     public override void OnHandleInput()

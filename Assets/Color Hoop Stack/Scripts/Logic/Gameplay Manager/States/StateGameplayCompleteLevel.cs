@@ -15,6 +15,7 @@ public class StateGameplayCompleteLevel : StateGameplay
         base.OnEnter();
         Utils.Common.Log("win game!");
         EventDispatcher.Instance.PostEvent(EventID.ON_COMPLETE_LEVEL);
+        EventDispatcher.Instance.PostEvent(EventID.ON_DISABLED_TUTORIAL);
     }
 
     public override void OnHandleInput()

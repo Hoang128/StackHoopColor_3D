@@ -27,6 +27,8 @@ public class StateGameplayEnd : StateGameplay
 
         gameplayMgr.ringStackList.Clear();
         gameplayMgr.mapDataStack.Clear();
+
+        EventDispatcher.Instance.PostEvent(EventID.ON_DISABLED_TUTORIAL);
     }
 
     public override void OnHandleInput()

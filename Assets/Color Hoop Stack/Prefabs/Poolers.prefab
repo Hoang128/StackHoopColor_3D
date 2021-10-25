@@ -59,6 +59,51 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectToPool: {fileID: 599487973997858235, guid: fb18c7e174b6f9e43a258e6c450ba6ba, type: 3}
   initializeSize: 10
+--- !u!1 &5582502789643677119
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 367614927154524499}
+  - component: {fileID: 8107106140742936876}
+  m_Layer: 0
+  m_Name: CorrectPooler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &367614927154524499
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5582502789643677119}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7537545820748221165}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8107106140742936876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5582502789643677119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32d8f2483d6d45f4fba504184b293fe3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectToPool: {fileID: 4724334090525910051, guid: 104c50f441d14c24b81cae1036a63dad, type: 3}
+  initializeSize: 0
 --- !u!1 &7537545820748221154
 GameObject:
   m_ObjectHideFlags: 0
@@ -91,6 +136,7 @@ Transform:
   - {fileID: 7537545821154565553}
   - {fileID: 4620917226115897600}
   - {fileID: 6524826981409428934}
+  - {fileID: 367614927154524499}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -109,6 +155,7 @@ MonoBehaviour:
   ringPooler: {fileID: 7537545821617660149}
   ringStackPooler: {fileID: 7537545821154565552}
   VFXCompletePooler: {fileID: 5567775339646853003}
+  correctPooler: {fileID: 8107106140742936876}
 --- !u!1 &7537545821154565558
 GameObject:
   m_ObjectHideFlags: 0

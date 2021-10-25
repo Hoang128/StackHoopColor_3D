@@ -17,6 +17,11 @@ public class CommandRingMove : Command
     {
         base.Execute();
         GameplayMgr.Instance.stateMachine.StateChange(GameplayMgr.Instance.stateGameplayRingMove);
+
+        if (GameplayMgr.Instance.currentLevel == 1)
+        {
+            EventDispatcher.Instance.PostEvent(EventID.ON_DISABLED_CORRECTOR);
+        }
     }
 
     public override void Undo()

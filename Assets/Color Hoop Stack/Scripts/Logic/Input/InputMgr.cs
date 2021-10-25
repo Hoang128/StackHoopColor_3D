@@ -38,8 +38,11 @@ public class InputMgr : Singleton<InputMgr>
             if (ringStackEnd.number == ringStackStart.number)
             {
                 //command down
-                Command newMove = new CommandRingDown(ringStackEnd, ringMove);
-                newMove.Execute();
+                if (GameplayMgr.Instance.currentLevel != 0)
+                {
+                    Command newMove = new CommandRingDown(ringStackEnd, ringMove);
+                    newMove.Execute();
+                }
             }
             else
             {

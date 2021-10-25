@@ -42,9 +42,29 @@ public class StateGameplayInit : StateGameplay
         {
             InitLevelDefault();
         }
+
+        if (gameplayMgr.currentLevel > 1)
+        {
+            if (gameplayMgr.enabledTutorial)
+            {
+                gameplayMgr.enabledTutorial = false;
+            }
+        }
         else
         {
-            
+            if (!gameplayMgr.enabledTutorial)
+            {
+                gameplayMgr.enabledTutorial = true;
+            }
+        }
+
+        if (gameplayMgr.enabledTutorial)
+        {
+            EventDispatcher.Instance.PostEvent(EventID.ON_ENABLED_TUTORIAL);
+        }
+        else
+        {
+            EventDispatcher.Instance.PostEvent(EventID.ON_DISABLED_TUTORIAL);
         }
 
         FileHandler fileHandler = new FileHandler();
@@ -87,6 +107,12 @@ public class StateGameplayInit : StateGameplay
                     ringStack.AddNewRing(newRingComp);
                 }
             }
+        }
+
+        //level 1 setup for tutorial
+        if (gameplayMgr.currentLevel == 0)
+        {
+            gameplayMgr.ringStackList[1].canControl = false;
         }
 
         EventDispatcher.Instance.PostEvent(EventID.ON_INIT_LEVEL);

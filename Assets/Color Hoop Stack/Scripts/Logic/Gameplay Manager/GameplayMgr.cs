@@ -49,6 +49,7 @@ public class GameplayMgr : Singleton<GameplayMgr>
     public int stackCompleteNumber = 0;
 
     [HideInInspector] public int undoTime = 5;
+    [HideInInspector] public bool enabledTutorial = true;
 
     private void Awake()
     {
