@@ -10,7 +10,7 @@ public class CameraBackground : MonoBehaviour
     private void Start()
     { 
         float defaultCamAspect = defaultCamSizeRatio.x / defaultCamSizeRatio.y;
-        if ((Screen.width / Screen.height) < defaultCamAspect)
+        if (((float)Screen.width / (float)Screen.height) > defaultCamAspect)
         {
             //fit brackground to 4:3 ratio screen and etc...
             float camRatio = 1 / cam.aspect;

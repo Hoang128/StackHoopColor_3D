@@ -3,7 +3,7 @@
     "m_SelectedPackage": {
         "deviceId": "emulator-5554",
         "name": "com.DefaultCompany.StackHoopColor_3D",
-        "processId": 3881,
+        "processId": 4305,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -69,9 +69,27 @@
             "exited": false
         },
         {
+            "deviceId": "420055dac6e98471",
+            "name": "com.DefaultCompany.StackHoopColor_3D",
+            "processId": 16475,
+            "exited": false
+        },
+        {
             "deviceId": "emulator-5554",
             "name": "com.DefaultCompany.StackHoopColor_3D",
             "processId": 3881,
+            "exited": true
+        },
+        {
+            "deviceId": "emulator-5554",
+            "name": "com.bluestacks.launcher",
+            "processId": 2220,
+            "exited": false
+        },
+        {
+            "deviceId": "emulator-5554",
+            "name": "com.DefaultCompany.StackHoopColor_3D",
+            "processId": 4305,
             "exited": false
         }
     ],
