@@ -15,7 +15,6 @@ public class GameCamera : MonoBehaviour
     private void Awake()
     {
         EventDispatcher.Instance.RegisterListener(EventID.ON_RING_STACK_NUMBER_CHANGE, param => OnRingStackNumberChange());
-        camRatio = 1/cam.aspect;
     }
 
 #if UNITY_EDITOR
@@ -24,7 +23,10 @@ public class GameCamera : MonoBehaviour
     public void OnRingStackNumberChange()
     {
         int currentStackNumber = GameplayMgr.Instance.ringStackList.Count;
-        camRatio = 1 / cam.aspect;
-        cam.orthographicSize = GameplayMgr.Instance.stackRowListConfig.stackRowList[currentStackNumber].cameraSize / (defaultCamSizeRatio.y / defaultCamSizeRatio.x) * camRatio;
+        cam.orthographicSize = GameplayMgr.Instance.stackRowListConfig.stackRowList[currentStackNumber].cameraSize / (defaultCamSizeRatio.y / defaultCamSizeRatio.x) / cam.aspect;
+        if (cam.aspect > (defaultCamSizeRatio.x / defaultCamSizeRatio.y))
+        {
+            cam.orthographicSize *= cam.aspect / (defaultCamSizeRatio.x / defaultCamSizeRatio.y);
+        }
     }
 }

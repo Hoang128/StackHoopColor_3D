@@ -46,11 +46,11 @@ MonoBehaviour:
   - maxStackInRow: 5
     cameraSize: 6
   - maxStackInRow: 6
-    cameraSize: 6.5
+    cameraSize: 7
   - maxStackInRow: 6
-    cameraSize: 6.5
+    cameraSize: 7
   - maxStackInRow: 6
-    cameraSize: 6.5
+    cameraSize: 7
   - maxStackInRow: 5
     cameraSize: 6
   - maxStackInRow: 5

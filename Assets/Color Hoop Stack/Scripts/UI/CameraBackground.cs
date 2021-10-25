@@ -13,8 +13,7 @@ public class CameraBackground : MonoBehaviour
         if (((float)Screen.width / (float)Screen.height) > defaultCamAspect)
         {
             //fit brackground to 4:3 ratio screen and etc...
-            float camRatio = 1 / cam.aspect;
-            cam.orthographicSize = cam.orthographicSize / (defaultCamSizeRatio.y / defaultCamSizeRatio.x) * camRatio;
+            cam.orthographicSize = cam.orthographicSize / (defaultCamSizeRatio.y / defaultCamSizeRatio.x) /cam.aspect;
         }
     }
 }
