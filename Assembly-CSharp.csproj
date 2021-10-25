@@ -133,7 +133,6 @@
     <Compile Include="Assets\Color Hoop Stack\Scripts\Logic\Gameplay Manager\States\StateGameplayRingDown.cs" />
     <Compile Include="Assets\Color Hoop Stack\Design Data\Models\RingStackList.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\Framework\Design Patterns\Observer\EventId.cs" />
-    <Compile Include="Assets\Color Hoop Stack\Scripts\UI\HUD\NextLevelButton.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\Framework\Design Patterns\Singleton\Singleton.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\Logic\Poolers\RingPooler.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\Logic\Gameplay Manager\RingStack.cs" />

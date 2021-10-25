@@ -23,7 +23,7 @@ public class WinMenu : MonoBehaviour
     private void OnDisable()
     {
         backgroundPanel.gameObject.SetActive(false);
-        GameplayMgr.Instance.GoToLevel(GameplayMgr.Instance.currentLevel + 1);
+        GameplayMgr.Instance.GoToLevel(GameplayMgr.Instance.currentLevel);
     }
 
     public void PlayEndAnimation()
