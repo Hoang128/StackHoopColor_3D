@@ -39,11 +39,20 @@ public class MoreStackButton : MonoBehaviour
 
     public void AddMoreStack()
     {
-        GoogleAdMobController.Instance.rewardedTypeAd = GoogleAdMobController.RewardType.RING_STACK;
-        GoogleAdMobController.Instance.ShowRewardedAd();
-        DisableButton();
-        canUse = false;
-        SoundsMgr.Instance.PlaySFX(SoundsMgr.Instance.sfxListConfig.sfxConfigDic[SFXType.BUTTON], false);
+        if (GameplayMgr.Instance.enabledTutorial)
+        {
+            GameplayMgr.Instance.stateMachine.StateChange(GameplayMgr.Instance.stateGameplayAddStack);
+            EventDispatcher.Instance.PostEvent(EventID.ON_DISABLED_TUTORIAL);
+            DisableButton();
+        }
+        else
+        {
+            GoogleAdMobController.Instance.rewardedTypeAd = GoogleAdMobController.RewardType.RING_STACK;
+            GoogleAdMobController.Instance.ShowRewardedAd();
+            canUse = false;
+            SoundsMgr.Instance.PlaySFX(SoundsMgr.Instance.sfxListConfig.sfxConfigDic[SFXType.BUTTON], false);
+            DisableButton();
+        }
     }
 
     public void EnableButton()
@@ -52,7 +61,6 @@ public class MoreStackButton : MonoBehaviour
         {
             riseEnableButtonFlag = true;
             riseDisableButtonFlag = false;
-            Debug.Log("He he me go active OwO !");
         }
     }
 
@@ -62,7 +70,6 @@ public class MoreStackButton : MonoBehaviour
         {
             riseEnableButtonFlag = false;
             riseDisableButtonFlag = true;
-            Debug.Log("He he me go deactive OwO !");
         }
     }
 }

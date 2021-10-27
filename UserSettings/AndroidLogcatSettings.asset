@@ -1,9 +1,9 @@
 {
-    "m_SelectedDeviceId": "emulator-5554",
+    "m_SelectedDeviceId": "420055dac6e98471",
     "m_SelectedPackage": {
-        "deviceId": "emulator-5554",
+        "deviceId": "420055dac6e98471",
         "name": "com.DefaultCompany.StackHoopColor_3D",
-        "processId": 4305,
+        "processId": 27758,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -29,49 +29,43 @@
         {
             "deviceId": "420055dac6e98471",
             "name": "com.DefaultCompany.StackHoopColor_3D",
-            "processId": 13566,
-            "exited": true
-        },
-        {
-            "deviceId": "420055dac6e98471",
-            "name": "com.DefaultCompany.StackHoopColor_3D",
-            "processId": 29769,
-            "exited": true
-        },
-        {
-            "deviceId": "420055dac6e98471",
-            "name": "com.sec.android.app.launcher",
-            "processId": 2857,
-            "exited": false
-        },
-        {
-            "deviceId": "420055dac6e98471",
-            "name": "com.DefaultCompany.StackHoopColor_3D",
-            "processId": 2412,
-            "exited": false
-        },
-        {
-            "deviceId": "420055dac6e98471",
-            "name": "com.DefaultCompany.StackHoopColor_3D",
-            "processId": 5787,
-            "exited": false
-        },
-        {
-            "deviceId": "420055dac6e98471",
-            "name": "com.DefaultCompany.StackHoopColor_3D",
             "processId": 6929,
-            "exited": false
+            "exited": true
         },
         {
             "deviceId": "420055dac6e98471",
             "name": "com.DefaultCompany.StackHoopColor_3D",
             "processId": 6254,
-            "exited": false
+            "exited": true
         },
         {
             "deviceId": "420055dac6e98471",
             "name": "com.DefaultCompany.StackHoopColor_3D",
             "processId": 16475,
+            "exited": true
+        },
+        {
+            "deviceId": "420055dac6e98471",
+            "name": "com.DefaultCompany.StackHoopColor_3D",
+            "processId": 30510,
+            "exited": true
+        },
+        {
+            "deviceId": "420055dac6e98471",
+            "name": "com.DefaultCompany.StackHoopColor_3D",
+            "processId": 24404,
+            "exited": true
+        },
+        {
+            "deviceId": "420055dac6e98471",
+            "name": "com.sec.android.app.launcher",
+            "processId": 2711,
+            "exited": false
+        },
+        {
+            "deviceId": "420055dac6e98471",
+            "name": "com.DefaultCompany.StackHoopColor_3D",
+            "processId": 27758,
             "exited": false
         },
         {

@@ -106,7 +106,7 @@ public class GameplayMgr : Singleton<GameplayMgr>
         {
             ringStackDistance.x *= 2f;
         }
-        else if ((ringStackNumber == 3) || (ringStackPerRow == 3))
+        else if (ringStackNumber == 3)
         {
             ringStackDistance.x *= 1.5f;
         }
@@ -162,7 +162,9 @@ public class GameplayMgr : Singleton<GameplayMgr>
     public void EarnReward()
     {
         if (GoogleAdMobController.Instance.rewardedTypeAd == GoogleAdMobController.RewardType.RING_STACK)
+        {
             stateMachine.StateChange(stateGameplayAddStack);
+        }  
         else if (GoogleAdMobController.Instance.rewardedTypeAd == GoogleAdMobController.RewardType.UNDO)
         {
             UndoLevel();

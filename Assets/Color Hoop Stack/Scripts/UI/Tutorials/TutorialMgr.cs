@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class TutorialMgr : MonoBehaviour
 {
     [SerializeField] private GameObject tutorialText;
     [SerializeField] private GameObject tutorialCursor;
     [SerializeField] private GameObject tutorialCorrect;
+    [SerializeField] private GameObject tutorialMoreStack;
 
     private void Awake()
     {
@@ -16,14 +18,20 @@ public class TutorialMgr : MonoBehaviour
 
     public void EnableTutorial()
     {
-        tutorialText.SetActive(true);
         if (GameplayMgr.Instance.currentLevel == 0)
         {
+            tutorialText.SetActive(true);
             tutorialCursor.SetActive(true);
         }
         else if (GameplayMgr.Instance.currentLevel == 1)
         {
+            tutorialText.SetActive(true);
             tutorialCorrect.SetActive(true);
+        }
+        else if (GameplayMgr.Instance.currentLevel == 9)
+        {
+            tutorialMoreStack.SetActive(true);
+            tutorialCursor.SetActive(true);
         }
     }
 
@@ -40,6 +48,10 @@ public class TutorialMgr : MonoBehaviour
         if (tutorialCorrect.activeSelf)
         {
             tutorialCorrect.SetActive(false);
+        }
+        if (tutorialMoreStack.activeSelf)
+        {
+            tutorialMoreStack.SetActive(false);
         }
     }
 }

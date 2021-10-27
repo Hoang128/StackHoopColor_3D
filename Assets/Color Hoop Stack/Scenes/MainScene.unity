@@ -254,8 +254,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2085302213}
     - target: {fileID: 3238215952888773532, guid: e4caa0d3b36ed384f9758d30573bc4e0, type: 3}
-      propertyPath: OnBannerAdLoadEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      propertyPath: OnAdClosedEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3238215952888773532, guid: e4caa0d3b36ed384f9758d30573bc4e0, type: 3}
+      propertyPath: OnAdLoadedEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3238215952888773532, guid: e4caa0d3b36ed384f9758d30573bc4e0, type: 3}
       propertyPath: OnBannerAdClosedEvent.m_PersistentCalls.m_Calls.Array.size
@@ -270,10 +274,6 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3238215952888773532, guid: e4caa0d3b36ed384f9758d30573bc4e0, type: 3}
-      propertyPath: OnBannerAdLoadEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3238215952888773532, guid: e4caa0d3b36ed384f9758d30573bc4e0, type: 3}
       propertyPath: OnAdClosedEvent.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
@@ -282,32 +282,12 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3238215952888773532, guid: e4caa0d3b36ed384f9758d30573bc4e0, type: 3}
-      propertyPath: OnBannerAdLoadEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1761782797}
-    - target: {fileID: 3238215952888773532, guid: e4caa0d3b36ed384f9758d30573bc4e0, type: 3}
-      propertyPath: OnBannerAdLoadEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3238215952888773532, guid: e4caa0d3b36ed384f9758d30573bc4e0, type: 3}
-      propertyPath: OnBannerAdLoadEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: EnableBannerAdWarpper
-      objectReference: {fileID: 0}
-    - target: {fileID: 3238215952888773532, guid: e4caa0d3b36ed384f9758d30573bc4e0, type: 3}
       propertyPath: OnUserEarnedRewardEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1547641046}
     - target: {fileID: 3238215952888773532, guid: e4caa0d3b36ed384f9758d30573bc4e0, type: 3}
       propertyPath: OnAdFailedToShowEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3238215952888773532, guid: e4caa0d3b36ed384f9758d30573bc4e0, type: 3}
-      propertyPath: OnBannerAdLoadEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: GoogleAdMobController, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 3238215952888773532, guid: e4caa0d3b36ed384f9758d30573bc4e0, type: 3}
-      propertyPath: OnBannerAdLoadEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4caa0d3b36ed384f9758d30573bc4e0, type: 3}
@@ -397,17 +377,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 75c1320ad0709d5409da5bca5c43a924, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1761782797 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3238215952888773532, guid: e4caa0d3b36ed384f9758d30573bc4e0, type: 3}
-  m_PrefabInstance: {fileID: 408590667}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 157eb8e56800dff4fafcfb3c012014de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &2041329586
@@ -927,14 +896,14 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
-    - target: {fileID: 125881049027146002, guid: 341cf4f08b3b72041b4655573964ce81, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.8474121
-      objectReference: {fileID: 0}
     - target: {fileID: 145323842699392632, guid: 341cf4f08b3b72041b4655573964ce81, type: 3}
       propertyPath: cam
       value: 
       objectReference: {fileID: 89289564}
+    - target: {fileID: 353858790907544204, guid: 341cf4f08b3b72041b4655573964ce81, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -141.00002
+      objectReference: {fileID: 0}
     - target: {fileID: 1044002947627275521, guid: 341cf4f08b3b72041b4655573964ce81, type: 3}
       propertyPath: tutorial
       value: 
@@ -974,6 +943,10 @@ PrefabInstance:
     - target: {fileID: 4809003735210549207, guid: 341cf4f08b3b72041b4655573964ce81, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 5423291627713174318, guid: 341cf4f08b3b72041b4655573964ce81, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -95.64407
       objectReference: {fileID: 0}
     - target: {fileID: 5536457880118867341, guid: 341cf4f08b3b72041b4655573964ce81, type: 3}
       propertyPath: m_text
@@ -1110,6 +1083,10 @@ PrefabInstance:
     - target: {fileID: 7826848709624797486, guid: 341cf4f08b3b72041b4655573964ce81, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 8395511716406515196, guid: 341cf4f08b3b72041b4655573964ce81, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8487733334512086907, guid: 341cf4f08b3b72041b4655573964ce81, type: 3}
       propertyPath: m_StaticEditorFlags

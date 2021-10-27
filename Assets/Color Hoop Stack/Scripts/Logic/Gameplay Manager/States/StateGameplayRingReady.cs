@@ -19,6 +19,11 @@ public class StateGameplayRingReady : StateGameplay
         {
             gameplayMgr.ringStackList[1].canControl = true;
         }
+
+        if (gameplayMgr.currentLevel == 0)
+        {
+            EventDispatcher.Instance.PostEvent(EventID.ON_CHANGE_TUTORIAL_TEXT);
+        }
     }
 
     public override void OnHandleInput()

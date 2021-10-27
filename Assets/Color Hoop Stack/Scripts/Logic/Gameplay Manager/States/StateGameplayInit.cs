@@ -43,7 +43,7 @@ public class StateGameplayInit : StateGameplay
             InitLevelDefault();
         }
 
-        if (gameplayMgr.currentLevel > 1)
+        if ((gameplayMgr.currentLevel > 1) && (gameplayMgr.currentLevel != 9))
         {
             if (gameplayMgr.enabledTutorial)
             {
@@ -61,11 +61,18 @@ public class StateGameplayInit : StateGameplay
         if (gameplayMgr.enabledTutorial)
         {
             EventDispatcher.Instance.PostEvent(EventID.ON_ENABLED_TUTORIAL);
+            EventDispatcher.Instance.PostEvent(EventID.ON_RESET_TUTORIAL_TEXT);
+            if (gameplayMgr.currentLevel == 1)
+            {
+                EventDispatcher.Instance.PostEvent(EventID.ON_CHANGE_TUTORIAL_TEXT);
+            }
         }
         else
         {
             EventDispatcher.Instance.PostEvent(EventID.ON_DISABLED_TUTORIAL);
         }
+
+        EventDispatcher.Instance.PostEvent(EventID.ON_INIT_LEVEL);
 
         FileHandler fileHandler = new FileHandler();
         fileHandler.SaveLevelData();
@@ -114,7 +121,5 @@ public class StateGameplayInit : StateGameplay
         {
             gameplayMgr.ringStackList[1].canControl = false;
         }
-
-        EventDispatcher.Instance.PostEvent(EventID.ON_INIT_LEVEL);
     }
 }

@@ -115,9 +115,9 @@ MonoBehaviour:
   OnBannerAdLoadEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GameCanvas, Assembly-CSharp
-        m_MethodName: ShowBannerWarpper
+      - m_Target: {fileID: 3238215952888773532}
+        m_TargetAssemblyTypeName: GoogleAdMobController, Assembly-CSharp
+        m_MethodName: EnableBannerAdWarpper
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -151,6 +151,45 @@ MonoBehaviour:
       - m_Target: {fileID: 3238215952888773532}
         m_TargetAssemblyTypeName: GoogleAdMobController, Assembly-CSharp
         m_MethodName: DisableBannerAdWarpper
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnRewaredAdLoadedEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3238215952888773532}
+        m_TargetAssemblyTypeName: GoogleAdMobController, Assembly-CSharp
+        m_MethodName: EnableAdRewaredButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnRewardedAdFailedToLoadEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnRewaredAdOpeningEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnRewardedAdFailedToShowEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnRewardedAdClosedEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3238215952888773532}
+        m_TargetAssemblyTypeName: GoogleAdMobController, Assembly-CSharp
+        m_MethodName: ReloadRewardedAd
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

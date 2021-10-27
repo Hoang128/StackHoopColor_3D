@@ -31,6 +31,11 @@ public class GoogleAdMobController : Singleton<GoogleAdMobController>
     public UnityEvent OnBannerAdFailedToLoadEvent;
     public UnityEvent OnBannerAdOpenedEvent;
     public UnityEvent OnBannerAdClosedEvent;
+    public UnityEvent OnRewaredAdLoadedEvent;
+    public UnityEvent OnRewardedAdFailedToLoadEvent;
+    public UnityEvent OnRewaredAdOpeningEvent;
+    public UnityEvent OnRewardedAdFailedToShowEvent;
+    public UnityEvent OnRewardedAdClosedEvent;
     public bool showFpsMeter = true;
     public TextMeshProUGUI fpsMeter;
     public TextMeshProUGUI statusText;
@@ -227,11 +232,11 @@ public class GoogleAdMobController : Singleton<GoogleAdMobController>
         rewardedAd = new RewardedAd(adUnitId);
 
         // Add Event Handlers
-        rewardedAd.OnAdLoaded += (sender, args) => OnAdLoadedEvent.Invoke();
-        rewardedAd.OnAdFailedToLoad += (sender, args) => OnAdFailedToLoadEvent.Invoke();
-        rewardedAd.OnAdOpening += (sender, args) => OnAdOpeningEvent.Invoke();
-        rewardedAd.OnAdFailedToShow += (sender, args) => OnAdFailedToShowEvent.Invoke();
-        rewardedAd.OnAdClosed += (sender, args) => OnAdClosedEvent.Invoke();
+        rewardedAd.OnAdLoaded += (sender, args) => OnRewaredAdLoadedEvent.Invoke();
+        rewardedAd.OnAdFailedToLoad += (sender, args) => OnRewardedAdFailedToLoadEvent.Invoke();
+        rewardedAd.OnAdOpening += (sender, args) => OnRewaredAdOpeningEvent.Invoke();
+        rewardedAd.OnAdFailedToShow += (sender, args) => OnRewardedAdFailedToShowEvent.Invoke();
+        rewardedAd.OnAdClosed += (sender, args) => OnRewardedAdClosedEvent.Invoke();
         rewardedAd.OnUserEarnedReward += (sender, args) => OnUserEarnedRewardEvent.Invoke();
 
         // Create empty ad request
@@ -485,7 +490,10 @@ public class GoogleAdMobController : Singleton<GoogleAdMobController>
     {
         if (statusText.text.Equals("Requesting Rewarded Ad."))
         {
-            EventDispatcher.Instance.PostEvent(EventID.ON_LOADED_REWARDED_AD);
+            if (GameplayMgr.Instance.currentLevel != 9)
+            {
+                EventDispatcher.Instance.PostEvent(EventID.ON_LOADED_REWARDED_AD);
+            }
         }
     }
 

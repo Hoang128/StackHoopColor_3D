@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>latest</LangVersion>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -53,9 +53,13 @@
     <UnityVersion>2020.3.19f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Assets\Color Hoop Stack\Scripts\UI\Panel Menus\RateButton.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\UI\HUD\RestartButton.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\Framework\Scriptable Object\RTHelper.cs" />
+    <Compile Include="Assets\Color Hoop Stack\Scripts\UI\Tutorials\TutorialCorrect.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\Logic\Gameplay Manager\States\StateGameplay.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\UI\HUD\LevelNumberText.cs" />
     <Compile Include="Assets\Color Hoop Stack\Design Data\Models\LevelListConfig.cs" />
@@ -74,6 +78,7 @@
     <Compile Include="Assets\Color Hoop Stack\Scripts\Logic\Gameplay Manager\States\StateGameplayInit.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\Logic\RemoteConfigMgr.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\Framework\Design Patterns\Command\Command.cs" />
+    <Compile Include="Assets\Color Hoop Stack\Scripts\UI\Tutorials\Corrector.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\UI\Panel Menus\VibrateButton.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\Logic\Gameplay Manager\States\StateGameplayRingReady.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\Framework\Design Patterns\Observer\EventDispatcher.cs" />
@@ -86,6 +91,7 @@
     <Compile Include="Assets\DOTween\Modules\DOTweenModuleUnityVersion.cs" />
     <Compile Include="Assets\Color Hoop Stack\Design Data\Models\RingColorConfig.cs" />
     <Compile Include="Assets\Color Hoop Stack\Design Data\Models\StackRowListConfig.cs" />
+    <Compile Include="Assets\Color Hoop Stack\Scripts\UI\CameraBackground.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\UI\HUD\MoreStackButton.cs" />
     <Compile Include="Assets\Color Hoop Stack\Design Data\Models\SFXListConfig.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\Framework\Design Patterns\State Machine\StateMachine.cs" />
@@ -105,6 +111,7 @@
     <Compile Include="Assets\Color Hoop Stack\Scripts\Logic\Ring\RingType.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\Logic\File\MapData.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\Logic\GoogleAdMobController.cs" />
+    <Compile Include="Assets\Color Hoop Stack\Scripts\UI\Tutorials\MoreStackTutorial.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\UI\HUD\ShowFPS.cs" />
     <Compile Include="Assets\Color Hoop Stack\Design Data\Models\SFXType.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\Logic\Ring\Ring.cs" />
@@ -115,6 +122,7 @@
     <Compile Include="Assets\Color Hoop Stack\Design Data\Models\RingTypeConfig.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\Logic\Input\CommandRingUp.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\UI\Debug\NextLevelDebugButton.cs" />
+    <Compile Include="Assets\Color Hoop Stack\Scripts\UI\Tutorials\TutorialText.cs" />
     <Compile Include="Assets\Color Hoop Stack\Design Data\Save Data\LevelData.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\Logic\Gameplay Manager\States\StateGameplayAddStack.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\UI\Panel Menus\SettingPanel.cs" />
@@ -134,13 +142,10 @@
     <Compile Include="Assets\Color Hoop Stack\Design Data\Models\RingStackList.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\Framework\Design Patterns\Observer\EventId.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\Framework\Design Patterns\Singleton\Singleton.cs" />
+    <Compile Include="Assets\Color Hoop Stack\Scripts\UI\Tutorials\CorrectPooler.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\Logic\Poolers\RingPooler.cs" />
     <Compile Include="Assets\Color Hoop Stack\Scripts\Logic\Gameplay Manager\RingStack.cs" />
     <Compile Include="Assets\DOTween\Modules\DOTweenModulePhysics.cs" />
-    <Compile Include="Assets\Color Hoop Stack\Scripts\UI\Tutorials\CorrectPooler.cs" />
-    <Compile Include="Assets\Color Hoop Stack\Scripts\UI\Tutorials\Corrector.cs" />
-    <Compile Include="Assets\Color Hoop Stack\Scripts\UI\Tutorials\TutorialCorrect.cs" />
-    <Compile Include="Assets\Color Hoop Stack\Scripts\UI\CameraBackground.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -900,6 +905,10 @@
       <Project>{94ED2951-77E9-1283-B477-82BD389E6765}</Project>
       <Name>Sirenix.OdinInspector.CompatibilityLayer</Name>
     </ProjectReference>
+    <ProjectReference Include="Coffee.UnmaskForUGUI.csproj">
+      <Project>{BF4E2D7B-C54C-4B0E-4906-7BA0B1AD1431}</Project>
+      <Name>Coffee.UnmaskForUGUI</Name>
+    </ProjectReference>
     <ProjectReference Include="Sirenix.OdinInspector.Modules.UnityMathematics.csproj">
       <Project>{16B1C6A7-2F85-44C9-DDF9-ABC3D0F2E44D}</Project>
       <Name>Sirenix.OdinInspector.Modules.UnityMathematics</Name>
@@ -907,6 +916,10 @@
     <ProjectReference Include="Sirenix.OdinInspector.CompatibilityLayer.Editor.csproj">
       <Project>{D5000DDE-11AB-B9BF-A9FD-338E83D78D47}</Project>
       <Name>Sirenix.OdinInspector.CompatibilityLayer.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unmask_Demo.csproj">
+      <Project>{EC395E28-35CB-FF83-5287-5478B4F64FF2}</Project>
+      <Name>Unmask_Demo</Name>
     </ProjectReference>
     <ProjectReference Include="GoogleMobileAds.Editor.csproj">
       <Project>{99F96CAF-CEFD-C9DB-C465-38ED6ECE8932}</Project>

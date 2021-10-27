@@ -30,6 +30,10 @@ public class GameCanvas : MonoBehaviour
             StopCoroutine(enableWinMenu);
         winMenu.gameObject.SetActive(false);
         moreStackButton.InitLevel();
+        if (GameplayMgr.Instance.currentLevel == 9)
+        {
+            moreStackButton.EnableButton();
+        }
     }
 
     public void CompleteLevelUI()
